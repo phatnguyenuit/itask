@@ -1,3 +1,10 @@
+## [1.0.2](https://github.com/phatnguyenuit/itask/compare/1.0.1...1.0.2) (2021-09-18)
+
+
+### Bug Fixes
+
+* fix node version ([46107e2](https://github.com/phatnguyenuit/itask/commit/46107e289dfe0ee6ad0f961d0026f8a67c7e0358))
+
 ## [1.0.1](https://github.com/phatnguyenuit/itask/compare/1.0.0...1.0.1) (2021-09-18)
 
 # 1.0.0 (2021-09-18)
