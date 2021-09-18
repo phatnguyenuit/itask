@@ -5,8 +5,8 @@ on:
     branches: [ master ]
 
 jobs:
-  deploy:
-    name: Release and deploy to GitHub Pages
+  ci:
+    name: Build & release
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:

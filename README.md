@@ -1,12 +1,10 @@
-# iTask
+# iTask - Task management
 
 ![CI/CD](https://github.com/phatnguyenuit/itask/workflows/CI/badge.svg)
 [![codecov](https://codecov.io/gh/phatnguyenuit/itask/branch/master/graph/badge.svg?token=lE63QSlvxI)](https://codecov.io/gh/phatnguyenuit/itask)
 ![License](https://img.shields.io/github/license/phatnguyenuit/itask)
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
-Task management
 
 ## Features
 

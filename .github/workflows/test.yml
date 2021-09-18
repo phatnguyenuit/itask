@@ -6,7 +6,7 @@ on:
 
 jobs:
   test:
-    name: Test pull request
+    name: Test pull requests
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
