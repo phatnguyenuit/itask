@@ -5,6 +5,7 @@ const createReducerObject = <TName extends string, TState>({
   initialState,
   reducer,
 }: ReducerSettings<TName, TState>): ReducerObject<TName, TState> => ({
+  __typename: 'ReducerObject',
   name,
   initialState,
   reducer,

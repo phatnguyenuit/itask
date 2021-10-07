@@ -4,13 +4,18 @@ interface HelloState {
   message: string;
 }
 
-const initialState: HelloState = { message: '' };
+export const buildHelloState: StateBuilder<HelloState> = (overrides = {}) => ({
+  message: 'Unknown',
+  ...overrides,
+});
+
+export const initialState: HelloState = buildHelloState();
 
 const helloSlice = createSlice({
   name: 'hello',
   initialState,
   reducers: {
-    hello: (state: HelloState, payload: string) => ({
+    hello: (state, payload: string) => ({
       ...state,
       message: payload,
     }),

@@ -8,6 +8,7 @@ export interface ReducerSettings<TName extends string, TState> {
 }
 
 export interface ReducerObject<TName extends string, TState> {
+  __typename: 'ReducerObject';
   initialState: TState;
   name: TName;
   reducer: Reducer<TState, PayloadAction>;
@@ -29,7 +30,11 @@ export interface SliceObject<
   TName extends string,
   TState,
   TSliceReducers extends SliceReducersBase<TState>,
-> extends ReducerObject<TName, TState> {
+> {
+  __typename: 'SliceObject';
+  initialState: TState;
+  name: TName;
+  reducer: Reducer<TState, PayloadAction>;
   actions: Actions<TState, TSliceReducers>;
   saga: () => Generator;
 }

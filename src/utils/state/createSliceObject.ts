@@ -69,7 +69,14 @@ const createSliceObject = <
     );
   };
 
-  return { name, initialState, actions, reducer, saga };
+  return {
+    __typename: 'SliceObject',
+    name,
+    initialState,
+    actions,
+    reducer,
+    saga,
+  };
 };
 
 export default createSliceObject;

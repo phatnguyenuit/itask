@@ -14,8 +14,7 @@ import { SliceObject, ReducerObject } from 'types/state';
 
 const isSliceObject = (
   o: SliceObject<string, any, any> | ReducerObject<string, any>,
-): o is SliceObject<string, any, any> =>
-  o && !!(o as SliceObject<string, any, any>).saga;
+): o is SliceObject<string, any, any> => o && o.__typename === 'SliceObject';
 
 const createRootReducer = <TSlices extends SlicesBase>(slices: TSlices) =>
   combineReducers(

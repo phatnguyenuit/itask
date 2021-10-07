@@ -2,27 +2,18 @@ import { Provider } from 'react-redux';
 
 import store from 'states/store';
 
-import logo from './logo.svg';
+import HelloWidget from 'components/hello-widget';
+import HelloInput from 'components/hello-input';
+
 import './App.css';
 
 function App() {
   return (
     <Provider store={store}>
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.tsx</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+        <h2>iTask Management</h2>
+        <HelloWidget />
+        <HelloInput />
       </div>
     </Provider>
   );
