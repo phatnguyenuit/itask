@@ -23,7 +23,7 @@ export interface SliceSettings<
   name: TName;
   reducers: TSliceReducers;
   workers?: Workers<TState, TSliceReducers>;
-  extraReducer?: Reducer<TState, PayloadAction>;
+  extraReducer?: Reducer<TState, Action<string> | PayloadAction>;
 }
 
 export interface SliceObject<
@@ -34,7 +34,7 @@ export interface SliceObject<
   __typename: 'SliceObject';
   initialState: TState;
   name: TName;
-  reducer: Reducer<TState, PayloadAction>;
+  reducer: Reducer<TState, Action<string> | PayloadAction>;
   actions: Actions<TState, TSliceReducers>;
   saga: () => Generator;
 }
@@ -52,8 +52,12 @@ export interface ServiceSlicers<TState extends StoreServiceState> {
   requestSuccess: PayloadActionReducer<TState, string>;
 }
 
+export type AnyReducer<TState> =
+  | ActionReducer<TState>
+  | PayloadActionReducer<TState>;
+
 export interface SliceReducersBase<TState> {
-  [k: string]: ActionReducer<TState> | PayloadActionReducer<TState>;
+  [k: string]: AnyReducer<TState>;
 }
 
 export interface PayloadAction<TActionType = string, TPayload = any>
@@ -73,6 +77,13 @@ export type PayloadActionReducer<TState, TPayload = any> = (
   state: TState,
   payload: TPayload,
 ) => TState;
+
+export type ReducerType<
+  TState,
+  TReducer extends AnyReducer<TState>,
+> = Parameters<TReducer>[1] extends undefined
+  ? ActionReducer<TState>
+  : PayloadActionReducer<TState, Parameters<TReducer>[1]>;
 
 export type Actions<
   TState,

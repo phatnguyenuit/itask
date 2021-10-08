@@ -23,7 +23,7 @@ const createRootReducer = <TSlices extends SlicesBase>(slices: TSlices) =>
     ),
   ) as unknown as Reducer<RootState<TSlices>, AnyAction>;
 
-const createRootSaga = <TSlices extends SlicesBase>(slices: TSlices) =>
+export const createRootSaga = <TSlices extends SlicesBase>(slices: TSlices) =>
   function* rootSaga() {
     yield all(
       Object.values(slices)
