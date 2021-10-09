@@ -23,7 +23,7 @@ const createRootReducer = <TSlices extends SlicesBase>(slices: TSlices) =>
     ),
   ) as unknown as Reducer<RootState<TSlices>, AnyAction>;
 
-const createRootSaga = <TSlices extends SlicesBase>(slices: TSlices) =>
+export const createRootSaga = <TSlices extends SlicesBase>(slices: TSlices) =>
   function* rootSaga() {
     yield all(
       Object.values(slices)
@@ -40,7 +40,10 @@ const createRootState = <TSlices extends SlicesBase>(slices: TSlices) =>
     ]),
   ) as PreloadedState<RootState<TSlices>>;
 
-const createStore = <TSlices extends SlicesBase>(slices: TSlices) => {
+const createStore = <TSlices extends SlicesBase>(
+  slices: TSlices,
+  initialState?: PreloadedState<RootState<TSlices>>,
+) => {
   const rootReducer = createRootReducer(slices);
   const rootState = createRootState(slices);
   const rootSaga = createRootSaga(slices);
@@ -54,7 +57,7 @@ const createStore = <TSlices extends SlicesBase>(slices: TSlices) => {
   const enhancer = composeEnhancer(applyMiddleware(sagaMiddleware));
   const store = reduxCreateStore<RootState<TSlices>, AnyAction, {}, {}>(
     rootReducer,
-    rootState,
+    initialState || rootState,
     enhancer,
   );
   sagaMiddleware.run(rootSaga);

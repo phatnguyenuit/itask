@@ -1,7 +1,7 @@
 import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import { selectHelloMessage } from 'selectors/hello';
 
-import { hello } from 'states/hello';
 import { renderWithRedux } from 'testUtils';
 import HelloInput from './index';
 
@@ -28,6 +28,6 @@ describe('HelloInput', () => {
     userEvent.type(input, 'Fast');
     userEvent.click(document.body); // Blur input
 
-    expect(store.getActions()).toEqual([hello('Fast')]);
+    expect(selectHelloMessage(store.getState())).toEqual('Fast');
   });
 });
