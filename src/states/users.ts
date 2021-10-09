@@ -41,10 +41,14 @@ const usersSlice = createSlice({
     fetchUsers: ({ fetchUsersSuccess, fetchUsersFail }) =>
       function* () {
         try {
-          const { data }: AxiosResponse<User[]> = yield call(axios.request, {
-            method: 'get',
-            url: 'https://jsonplaceholder.typicode.com/users',
-          });
+          // call([axios, 'request']) to pass context $axios to $axios.request method
+          const { data }: AxiosResponse<User[]> = yield call(
+            [axios, 'request'],
+            {
+              method: 'get',
+              url: 'https://jsonplaceholder.typicode.com/users',
+            },
+          );
 
           yield put(fetchUsersSuccess(data));
         } catch (error) {

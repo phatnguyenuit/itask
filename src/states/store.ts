@@ -1,3 +1,4 @@
+import { PreloadedState } from 'redux';
 import createStore from 'utils/state/createStore';
 import helloSlice, { buildHelloState } from './hello';
 import usersSlice, { buildUsersState } from './users';
@@ -12,6 +13,9 @@ const store = createStore(slices);
 export default store;
 
 export type RootState = ReturnType<typeof store['getState']>;
+
+export const configureStore = (initialState?: PreloadedState<RootState>) =>
+  createStore(slices, initialState);
 
 export const buildRootState: StateBuilder<RootState> = (overrides = {}) => ({
   hello: buildHelloState(overrides.hello),

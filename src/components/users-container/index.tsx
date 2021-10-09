@@ -18,7 +18,7 @@ const UsersContainer: React.FC = () => {
 
   return (
     <div>
-      <h4>UsersContainer</h4>
+      <h4>Users Container</h4>
       <button onClick={handleFetchUsers}>Fetch users</button>
 
       <div className={classes.users}>

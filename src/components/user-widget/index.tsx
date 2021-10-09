@@ -7,8 +7,12 @@ export interface UserWidgetProps {
 
 const UserWidget: React.FC<UserWidgetProps> = ({ user }) => (
   <div className={classes.root}>
-    <p>Name: {user.name}</p>
-    <p>Email: {user.email}</p>
+    <p>
+      Name: <span>{user.name}</span>
+    </p>
+    <p>
+      Email: <span>{user.email}</span>
+    </p>
   </div>
 );
 
