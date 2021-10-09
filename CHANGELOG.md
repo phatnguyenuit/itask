@@ -1,3 +1,10 @@
+# [1.2.0](https://github.com/phatnguyenuit/itask/compare/1.1.0...1.2.0) (2021-10-09)
+
+
+### Features
+
+* fetch users ([c92533b](https://github.com/phatnguyenuit/itask/commit/c92533b7222345d3c2d13f6609cbbc297b17d93b))
+
 # [1.1.0](https://github.com/phatnguyenuit/itask/compare/1.0.2...1.1.0) (2021-10-08)
 
 
