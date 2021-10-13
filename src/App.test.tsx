@@ -6,6 +6,6 @@ describe('App', () => {
   it('should render without error', () => {
     render(<App />);
 
-    expect(screen.getByText('iTask Management')).toBeVisible();
+    expect(screen.getByText('iTask')).toBeVisible();
   });
 });

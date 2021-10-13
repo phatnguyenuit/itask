@@ -5,7 +5,7 @@ interface HelloState {
 }
 
 export const buildHelloState: StateBuilder<HelloState> = (overrides = {}) => ({
-  message: 'Unknown',
+  message: '',
   ...overrides,
 });
 

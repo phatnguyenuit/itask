@@ -1,3 +1,4 @@
+import { Button } from '@mui/material';
 import { useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -19,7 +20,9 @@ const UsersContainer: React.FC = () => {
   return (
     <div>
       <h4>Users Container</h4>
-      <button onClick={handleFetchUsers}>Fetch users</button>
+      <Button variant="contained" onClick={handleFetchUsers}>
+        Fetch users
+      </Button>
 
       <div className={classes.users}>
         {users.map((user) => (
