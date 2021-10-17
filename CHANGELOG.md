@@ -1,3 +1,10 @@
+# [1.3.0](https://github.com/phatnguyenuit/itask/compare/1.2.0...1.3.0) (2021-10-17)
+
+
+### Features
+
+* add material-ui ([dc9cc0a](https://github.com/phatnguyenuit/itask/commit/dc9cc0aaf93e1884f5812f7edd288860e96aab19))
+
 # [1.2.0](https://github.com/phatnguyenuit/itask/compare/1.1.0...1.2.0) (2021-10-09)
 
 
