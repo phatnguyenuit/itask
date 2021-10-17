@@ -1,3 +1,4 @@
+import { TextField } from '@mui/material';
 import {
   useCallback,
   useState,
@@ -26,16 +27,14 @@ const HelloInput: React.FC = () => {
   );
 
   return (
-    <div>
-      <label htmlFor="userName">What's your name ?</label>
-      <br />
-      <input
-        id="userName"
-        value={userName}
-        onChange={handleChange}
-        onBlur={handleSave}
-      />
-    </div>
+    <TextField
+      variant="filled"
+      id="userName"
+      label="What's your name ?"
+      value={userName}
+      onChange={handleChange}
+      onBlur={handleSave}
+    />
   );
 };
 
