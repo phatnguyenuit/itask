@@ -2,9 +2,10 @@ import { Typography } from '@mui/material';
 import { useSelector } from 'react-redux';
 import { selectHelloMessage } from 'selectors/hello';
 
-import classes from './styles.module.css';
+import useStyles from './styles';
 
 const HelloWidget: React.FC = () => {
+  const classes = useStyles();
   const helloMessage = useSelector(selectHelloMessage);
 
   return (

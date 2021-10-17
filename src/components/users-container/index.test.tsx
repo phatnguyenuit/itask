@@ -5,6 +5,7 @@ import axios from 'axios';
 import { renderWithRedux } from 'testUtils';
 import { User } from 'types/user';
 
+import WithTheme from '../with-theme';
 import UsersContainer from './index';
 
 describe('UsersContainer', () => {
@@ -16,7 +17,11 @@ describe('UsersContainer', () => {
   });
 
   it('should render without error', () => {
-    renderWithRedux(<UsersContainer />);
+    renderWithRedux(
+      <WithTheme>
+        <UsersContainer />
+      </WithTheme>,
+    );
 
     expect(screen.getByText('Users Container')).toBeVisible();
   });
@@ -28,7 +33,11 @@ describe('UsersContainer', () => {
     ] as User[];
     mockRequest.mockResolvedValue({ data: fakeUsers });
 
-    renderWithRedux(<UsersContainer />);
+    renderWithRedux(
+      <WithTheme>
+        <UsersContainer />
+      </WithTheme>,
+    );
 
     const fetchBtn = screen.getByText('Fetch users');
 
@@ -47,7 +56,11 @@ describe('UsersContainer', () => {
 
   it('should fetch users failed with error', async () => {
     mockRequest.mockRejectedValue(new Error('Failed to fetch.'));
-    renderWithRedux(<UsersContainer />);
+    renderWithRedux(
+      <WithTheme>
+        <UsersContainer />
+      </WithTheme>,
+    );
 
     expect(screen.getByText('Users Container')).toBeVisible();
 
@@ -67,7 +80,11 @@ describe('UsersContainer', () => {
         },
       },
     });
-    renderWithRedux(<UsersContainer />);
+    renderWithRedux(
+      <WithTheme>
+        <UsersContainer />
+      </WithTheme>,
+    );
 
     expect(screen.getByText('Users Container')).toBeVisible();
 

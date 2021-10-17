@@ -1,4 +1,4 @@
-import { CssBaseline, ThemeProvider } from '@mui/material';
+import { CssBaseline } from '@mui/material';
 import { Provider } from 'react-redux';
 
 import store from 'states/store';
@@ -7,14 +7,14 @@ import AppBar from 'components/app-bar';
 import HelloWidget from 'components/hello-widget';
 import HelloInput from 'components/hello-input';
 import UsersContainer from 'components/users-container';
+import WithTheme from 'components/with-theme';
 
 import './App.css';
-import theme from 'theme';
 
 function App() {
   return (
     <Provider store={store}>
-      <ThemeProvider theme={theme}>
+      <WithTheme>
         <CssBaseline />
         <AppBar />
         <div className="App">
@@ -22,7 +22,7 @@ function App() {
           <HelloInput />
           <UsersContainer />
         </div>
-      </ThemeProvider>
+      </WithTheme>
     </Provider>
   );
 }

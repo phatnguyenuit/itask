@@ -6,9 +6,10 @@ import { selectUsers, selectErrorMessage } from 'selectors/users';
 import { fetchUsers } from 'states/users';
 
 import UserWidget from '../user-widget';
-import classes from './styles.module.css';
+import useStyles from './styles';
 
 const UsersContainer: React.FC = () => {
+  const classes = useStyles();
   const users = useSelector(selectUsers);
   const errorMessage = useSelector(selectErrorMessage);
 
