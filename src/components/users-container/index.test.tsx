@@ -17,13 +17,13 @@ describe('UsersContainer', () => {
   });
 
   it('should render without error', () => {
-    renderWithRedux(
+    const { renderResult } = renderWithRedux(
       <WithTheme>
         <UsersContainer />
       </WithTheme>,
     );
 
-    expect(screen.getByText('Users Container')).toBeVisible();
+    expect(renderResult.container).toBeInTheDocument();
   });
 
   it('should fetch users success', async () => {
@@ -41,7 +41,6 @@ describe('UsersContainer', () => {
 
     const fetchBtn = screen.getByText('Fetch users');
 
-    expect(screen.getByText('Users Container')).toBeVisible();
     expect(fetchBtn).toBeVisible();
 
     userEvent.click(fetchBtn);
@@ -61,8 +60,6 @@ describe('UsersContainer', () => {
         <UsersContainer />
       </WithTheme>,
     );
-
-    expect(screen.getByText('Users Container')).toBeVisible();
 
     const fetchBtn = screen.getByText('Fetch users');
     expect(fetchBtn).toBeVisible();
@@ -85,8 +82,6 @@ describe('UsersContainer', () => {
         <UsersContainer />
       </WithTheme>,
     );
-
-    expect(screen.getByText('Users Container')).toBeVisible();
 
     const fetchBtn = screen.getByText('Fetch users');
     expect(fetchBtn).toBeVisible();
