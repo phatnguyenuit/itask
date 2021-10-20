@@ -51,7 +51,7 @@ const usersSlice = createSlice({
           );
 
           yield put(fetchUsersSuccess(data));
-        } catch (error) {
+        } catch (error: any) {
           const message: string = error.response
             ? error.response.data.message
             : error.message;
