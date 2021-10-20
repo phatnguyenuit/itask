@@ -1,3 +1,10 @@
+# [1.4.0](https://github.com/phatnguyenuit/itask/compare/1.3.0...1.4.0) (2021-10-20)
+
+
+### Features
+
+* add todos ([eec870c](https://github.com/phatnguyenuit/itask/commit/eec870ce5658fa4e2568732ee49daa7e1ec4e40a))
+
 # [1.3.0](https://github.com/phatnguyenuit/itask/compare/1.2.0...1.3.0) (2021-10-17)
 
 
