@@ -1,4 +1,4 @@
-import { screen } from '@testing-library/react';
+import { waitFor, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 import App from './App';
@@ -18,7 +18,7 @@ describe('App', () => {
     expect(screen.getByText('iTask')).toBeVisible();
   });
 
-  it('should render todos container', () => {
+  it('should render todos container', async () => {
     const activeUser = USERS[0];
     const todos = createTodos(activeUser.id);
 
@@ -46,8 +46,10 @@ describe('App', () => {
 
     userEvent.click(userWidget);
 
-    todos.forEach(({ title }) => {
-      expect(screen.getByText(title)).toBeVisible();
+    await waitFor(() => {
+      todos.forEach(({ title }) => {
+        expect(screen.getByText(title)).toBeVisible();
+      });
     });
   });
 });

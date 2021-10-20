@@ -7,3 +7,6 @@ export const createTodos = (userId: number, numOfTodos = 1) =>
     completed: Math.random() > 0.5,
     title: `Todo #${index + 1}`,
   }));
+
+export const TODOS = createTodos(1, 2);
+export const TODO = TODOS[0];

@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Box, Typography } from '@mui/material';
 
-import { createSelectTodos } from 'selectors/todos';
+import { createSelectTodos, selectErrorMessage } from 'selectors/todos';
 import { fetchTodos } from 'states/todos';
 import { User } from 'types/user';
 
@@ -14,6 +14,7 @@ export interface TodosContainerProps {
 
 const TodosContainer: React.FC<TodosContainerProps> = ({ user }) => {
   const todos = useSelector(createSelectTodos(user.id));
+  const errorMessage = useSelector(selectErrorMessage);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -29,6 +30,7 @@ const TodosContainer: React.FC<TodosContainerProps> = ({ user }) => {
       {todos.map((todo) => (
         <TodoWidget key={todo.id} todo={todo} />
       ))}
+      {errorMessage && <p>{errorMessage}</p>}
     </Box>
   );
 };
