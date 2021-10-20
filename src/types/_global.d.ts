@@ -31,3 +31,7 @@ type EventHandler = (e: Event) => void;
 type StateBuilder<TState extends Record<string, any>> = (
   overrides?: Partial<TState>,
 ) => TState;
+
+type DeepPartial<T> = {
+  [propertyKey in keyof T]?: DeepPartial<T[propertyKey]>;
+};
