@@ -1,3 +1,4 @@
+// <START> THIS FILE IS GENERATED, DO NOT EDIT! </START>
 import { GraphQLResolveInfo } from 'graphql';
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
@@ -188,3 +189,5 @@ export type Resolvers<ContextType = any> = {
   Mutation?: MutationResolvers<ContextType>;
   Query?: QueryResolvers<ContextType>;
 };
+
+// <END> THIS FILE IS GENERATED, DO NOT EDIT! </END>

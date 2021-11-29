@@ -10,4 +10,8 @@
     "source.fixAll.eslint": true
   },
   "typescript.tsdk": "node_modules\\typescript\\lib",
+  "[yaml]": {
+    "editor.insertSpaces": true,
+    "editor.tabSize": 4
+  }
 }
