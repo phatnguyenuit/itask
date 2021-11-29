@@ -11,6 +11,9 @@ export type MakeOptional<T, K extends keyof T> = Omit<T, K> & {
 export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & {
   [SubKey in K]: Maybe<T[SubKey]>;
 };
+export type RequireFields<T, K extends keyof T> = {
+  [X in Exclude<keyof T, K>]?: T[X];
+} & { [P in K]-?: NonNullable<T[P]> };
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
   ID: string;
@@ -35,6 +38,26 @@ export type Query = {
   __typename?: 'Query';
   _empty?: Maybe<Scalars['String']>;
   getBooks: Array<Book>;
+  getTodos: Array<Todo>;
+};
+
+export type QueryGetTodosArgs = {
+  searchParams?: InputMaybe<SearchTodoParams>;
+  userId: Scalars['Int'];
+};
+
+export type SearchTodoParams = {
+  completed?: InputMaybe<Scalars['Boolean']>;
+  id?: InputMaybe<Scalars['Int']>;
+  title?: InputMaybe<Scalars['String']>;
+};
+
+export type Todo = {
+  __typename?: 'Todo';
+  completed: Scalars['Boolean'];
+  id: Scalars['Int'];
+  title: Scalars['String'];
+  userId: Scalars['Int'];
 };
 
 export type ResolverTypeWrapper<T> = Promise<T> | T;
@@ -146,18 +169,24 @@ export type DirectiveResolverFn<
 export type ResolversTypes = {
   Book: ResolverTypeWrapper<Book>;
   Boolean: ResolverTypeWrapper<Scalars['Boolean']>;
+  Int: ResolverTypeWrapper<Scalars['Int']>;
   Mutation: ResolverTypeWrapper<{}>;
   Query: ResolverTypeWrapper<{}>;
+  SearchTodoParams: SearchTodoParams;
   String: ResolverTypeWrapper<Scalars['String']>;
+  Todo: ResolverTypeWrapper<Todo>;
 };
 
 /** Mapping between all available schema types and the resolvers parents */
 export type ResolversParentTypes = {
   Book: Book;
   Boolean: Scalars['Boolean'];
+  Int: Scalars['Int'];
   Mutation: {};
   Query: {};
+  SearchTodoParams: SearchTodoParams;
   String: Scalars['String'];
+  Todo: Todo;
 };
 
 export type BookResolvers<
@@ -182,12 +211,30 @@ export type QueryResolvers<
 > = {
   _empty?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   getBooks?: Resolver<Array<ResolversTypes['Book']>, ParentType, ContextType>;
+  getTodos?: Resolver<
+    Array<ResolversTypes['Todo']>,
+    ParentType,
+    ContextType,
+    RequireFields<QueryGetTodosArgs, 'userId'>
+  >;
+};
+
+export type TodoResolvers<
+  ContextType = any,
+  ParentType extends ResolversParentTypes['Todo'] = ResolversParentTypes['Todo'],
+> = {
+  completed?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>;
+  id?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
+  title?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  userId?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
 export type Resolvers<ContextType = any> = {
   Book?: BookResolvers<ContextType>;
   Mutation?: MutationResolvers<ContextType>;
   Query?: QueryResolvers<ContextType>;
+  Todo?: TodoResolvers<ContextType>;
 };
 
 // <END> THIS FILE IS GENERATED, DO NOT EDIT! </END>
