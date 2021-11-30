@@ -76,7 +76,10 @@
     "@commitlint/config-conventional": "^11.0.0",
     "@graphql-codegen/add": "^3.1.0",
     "@graphql-codegen/cli": "^2.3.0",
+    "@graphql-codegen/schema-ast": "^2.4.0",
     "@graphql-codegen/typescript": "^2.4.1",
+    "@graphql-codegen/typescript-msw": "^1.0.0",
+    "@graphql-codegen/typescript-operations": "^2.2.1",
     "@graphql-codegen/typescript-resolvers": "^2.4.2",
     "@release-it/conventional-changelog": "^2.0.0",
     "@types/redux-mock-store": "^1.0.3",
@@ -88,6 +91,7 @@
     "graphql": "15.7.2",
     "husky": "^4.2.5",
     "lint-staged": "^10.2.11",
+    "msw": "^0.35.0",
     "prettier": "^2.0.5",
     "redux-mock-store": "^1.5.4",
     "release-it": "^14.2.2"

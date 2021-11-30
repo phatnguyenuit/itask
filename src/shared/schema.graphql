@@ -1,0 +1,27 @@
+type Book {
+  author: String!
+  title: String!
+}
+
+type Mutation {
+  _empty: String
+}
+
+type Query {
+  _empty: String
+  getBooks: [Book!]!
+  searchTodos(searchParams: SearchTodoParams, userId: Int!): [Todo!]!
+}
+
+input SearchTodoParams {
+  completed: Boolean
+  id: Int
+  title: String
+}
+
+type Todo {
+  completed: Boolean!
+  id: Int!
+  title: String!
+  userId: Int!
+}

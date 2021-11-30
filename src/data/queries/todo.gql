@@ -1,0 +1,8 @@
+query searchTodos($userId: Int!, $searchParams: SearchTodoParams) {
+    searchTodos(userId: $userId, searchParams: $searchParams) {
+        id
+        userId
+        title
+        completed
+    }
+}

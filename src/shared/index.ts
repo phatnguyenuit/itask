@@ -1,5 +1,6 @@
-// <START> THIS FILE IS GENERATED, DO NOT EDIT! </START>
+// THIS FILE IS GENERATED, DO NOT EDIT!!!
 import { GraphQLResolveInfo } from 'graphql';
+import { graphql, ResponseResolver, GraphQLRequest, GraphQLContext } from 'msw';
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
 export type Exact<T extends { [key: string]: unknown }> = {
@@ -25,8 +26,8 @@ export type Scalars = {
 
 export type Book = {
   __typename?: 'Book';
-  author?: Maybe<Scalars['String']>;
-  title?: Maybe<Scalars['String']>;
+  author: Scalars['String'];
+  title: Scalars['String'];
 };
 
 export type Mutation = {
@@ -38,10 +39,10 @@ export type Query = {
   __typename?: 'Query';
   _empty?: Maybe<Scalars['String']>;
   getBooks: Array<Book>;
-  getTodos: Array<Todo>;
+  searchTodos: Array<Todo>;
 };
 
-export type QueryGetTodosArgs = {
+export type QuerySearchTodosArgs = {
   searchParams?: InputMaybe<SearchTodoParams>;
   userId: Scalars['Int'];
 };
@@ -193,8 +194,8 @@ export type BookResolvers<
   ContextType = any,
   ParentType extends ResolversParentTypes['Book'] = ResolversParentTypes['Book'],
 > = {
-  author?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
-  title?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  author?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  title?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
@@ -211,11 +212,11 @@ export type QueryResolvers<
 > = {
   _empty?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   getBooks?: Resolver<Array<ResolversTypes['Book']>, ParentType, ContextType>;
-  getTodos?: Resolver<
+  searchTodos?: Resolver<
     Array<ResolversTypes['Todo']>,
     ParentType,
     ContextType,
-    RequireFields<QueryGetTodosArgs, 'userId'>
+    RequireFields<QuerySearchTodosArgs, 'userId'>
   >;
 };
 
@@ -237,4 +238,66 @@ export type Resolvers<ContextType = any> = {
   Todo?: TodoResolvers<ContextType>;
 };
 
-// <END> THIS FILE IS GENERATED, DO NOT EDIT! </END>
+export type GetBooksQueryVariables = Exact<{ [key: string]: never }>;
+
+export type GetBooksQuery = {
+  __typename?: 'Query';
+  getBooks: Array<{ __typename?: 'Book'; title: string; author: string }>;
+};
+
+export type SearchTodosQueryVariables = Exact<{
+  userId: Scalars['Int'];
+  searchParams?: InputMaybe<SearchTodoParams>;
+}>;
+
+export type SearchTodosQuery = {
+  __typename?: 'Query';
+  searchTodos: Array<{
+    __typename?: 'Todo';
+    id: number;
+    userId: number;
+    title: string;
+    completed: boolean;
+  }>;
+};
+
+/**
+ * @param resolver a function that accepts a captured request and may return a mocked response.
+ * @see https://mswjs.io/docs/basics/response-resolver
+ * @example
+ * mockGetBooksQuery((req, res, ctx) => {
+ *   return res(
+ *     ctx.data({ getBooks })
+ *   )
+ * })
+ */
+export const mockGetBooksQuery = (
+  resolver: ResponseResolver<
+    GraphQLRequest<GetBooksQueryVariables>,
+    GraphQLContext<GetBooksQuery>,
+    any
+  >,
+) => graphql.query<GetBooksQuery, GetBooksQueryVariables>('getBooks', resolver);
+
+/**
+ * @param resolver a function that accepts a captured request and may return a mocked response.
+ * @see https://mswjs.io/docs/basics/response-resolver
+ * @example
+ * mockSearchTodosQuery((req, res, ctx) => {
+ *   const { userId, searchParams } = req.variables;
+ *   return res(
+ *     ctx.data({ searchTodos })
+ *   )
+ * })
+ */
+export const mockSearchTodosQuery = (
+  resolver: ResponseResolver<
+    GraphQLRequest<SearchTodosQueryVariables>,
+    GraphQLContext<SearchTodosQuery>,
+    any
+  >,
+) =>
+  graphql.query<SearchTodosQuery, SearchTodosQueryVariables>(
+    'searchTodos',
+    resolver,
+  );

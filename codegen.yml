@@ -1,18 +1,20 @@
 overwrite: true
 schema: "http://localhost:4000"
-documents: null
+documents:
+    - src/data/queries/*.gql
 generates:
+    src/shared/schema.graphql:
+        plugins:
+            - schema-ast
     src/shared/index.ts:
         plugins:
             - add:
-                  content:
-                      - '// <START> THIS FILE IS GENERATED, DO NOT EDIT! </START>'
+                    content:
+                        - '// THIS FILE IS GENERATED, DO NOT EDIT!!!'
             - 'typescript'
             - 'typescript-resolvers'
-            - add:
-                  placement: append
-                  content:
-                      - '// <END> THIS FILE IS GENERATED, DO NOT EDIT! </END>'
+            - 'typescript-operations'
+            - 'typescript-msw'
         hooks:
             afterOnFileWrite:
                 - 'prettier --write'
