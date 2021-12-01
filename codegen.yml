@@ -14,8 +14,8 @@ generates:
             - typescript
             - typescript-resolvers
             - typescript-operations
-            - typescript-msw
             - typescript-react-apollo
+            - typescript-msw
         hooks:
             afterOnFileWrite:
                 - 'prettier --write'

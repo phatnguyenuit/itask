@@ -1,15 +1,18 @@
-type Book {
-  author: String!
+input CreateTodoPayload {
+  completed: Boolean!
   title: String!
+  userId: Int!
 }
 
 type Mutation {
   _empty: String
+  createTodo(payload: CreateTodoPayload!): Todo!
+  deleteTodo(id: Int!): Boolean!
+  updateTodo(id: Int!, payload: UpdateTodoPayload!): Todo!
 }
 
 type Query {
   _empty: String
-  getBooks: [Book!]!
   searchTodos(searchParams: SearchTodoParams, userId: Int!): [Todo!]!
 }
 
@@ -24,4 +27,9 @@ type Todo {
   id: Int!
   title: String!
   userId: Int!
+}
+
+input UpdateTodoPayload {
+  completed: Boolean
+  title: String
 }

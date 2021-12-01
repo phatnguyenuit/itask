@@ -1,8 +1,8 @@
 // THIS FILE IS GENERATED, DO NOT EDIT!!!
 import { GraphQLResolveInfo } from 'graphql';
-import { graphql, ResponseResolver, GraphQLRequest, GraphQLContext } from 'msw';
 import { gql } from '@apollo/client';
 import * as Apollo from '@apollo/client';
+import { graphql, ResponseResolver, GraphQLRequest, GraphQLContext } from 'msw';
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
 export type Exact<T extends { [key: string]: unknown }> = {
@@ -27,21 +27,36 @@ export type Scalars = {
   Float: number;
 };
 
-export type Book = {
-  __typename?: 'Book';
-  author: Scalars['String'];
+export type CreateTodoPayload = {
+  completed: Scalars['Boolean'];
   title: Scalars['String'];
+  userId: Scalars['Int'];
 };
 
 export type Mutation = {
   __typename?: 'Mutation';
   _empty?: Maybe<Scalars['String']>;
+  createTodo: Todo;
+  deleteTodo: Scalars['Boolean'];
+  updateTodo: Todo;
+};
+
+export type MutationCreateTodoArgs = {
+  payload: CreateTodoPayload;
+};
+
+export type MutationDeleteTodoArgs = {
+  id: Scalars['Int'];
+};
+
+export type MutationUpdateTodoArgs = {
+  id: Scalars['Int'];
+  payload: UpdateTodoPayload;
 };
 
 export type Query = {
   __typename?: 'Query';
   _empty?: Maybe<Scalars['String']>;
-  getBooks: Array<Book>;
   searchTodos: Array<Todo>;
 };
 
@@ -62,6 +77,11 @@ export type Todo = {
   id: Scalars['Int'];
   title: Scalars['String'];
   userId: Scalars['Int'];
+};
+
+export type UpdateTodoPayload = {
+  completed?: InputMaybe<Scalars['Boolean']>;
+  title?: InputMaybe<Scalars['String']>;
 };
 
 export type ResolverTypeWrapper<T> = Promise<T> | T;
@@ -171,35 +191,28 @@ export type DirectiveResolverFn<
 
 /** Mapping between all available schema types and the resolvers types */
 export type ResolversTypes = {
-  Book: ResolverTypeWrapper<Book>;
   Boolean: ResolverTypeWrapper<Scalars['Boolean']>;
+  CreateTodoPayload: CreateTodoPayload;
   Int: ResolverTypeWrapper<Scalars['Int']>;
   Mutation: ResolverTypeWrapper<{}>;
   Query: ResolverTypeWrapper<{}>;
   SearchTodoParams: SearchTodoParams;
   String: ResolverTypeWrapper<Scalars['String']>;
   Todo: ResolverTypeWrapper<Todo>;
+  UpdateTodoPayload: UpdateTodoPayload;
 };
 
 /** Mapping between all available schema types and the resolvers parents */
 export type ResolversParentTypes = {
-  Book: Book;
   Boolean: Scalars['Boolean'];
+  CreateTodoPayload: CreateTodoPayload;
   Int: Scalars['Int'];
   Mutation: {};
   Query: {};
   SearchTodoParams: SearchTodoParams;
   String: Scalars['String'];
   Todo: Todo;
-};
-
-export type BookResolvers<
-  ContextType = any,
-  ParentType extends ResolversParentTypes['Book'] = ResolversParentTypes['Book'],
-> = {
-  author?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
-  title?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
-  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+  UpdateTodoPayload: UpdateTodoPayload;
 };
 
 export type MutationResolvers<
@@ -207,6 +220,24 @@ export type MutationResolvers<
   ParentType extends ResolversParentTypes['Mutation'] = ResolversParentTypes['Mutation'],
 > = {
   _empty?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  createTodo?: Resolver<
+    ResolversTypes['Todo'],
+    ParentType,
+    ContextType,
+    RequireFields<MutationCreateTodoArgs, 'payload'>
+  >;
+  deleteTodo?: Resolver<
+    ResolversTypes['Boolean'],
+    ParentType,
+    ContextType,
+    RequireFields<MutationDeleteTodoArgs, 'id'>
+  >;
+  updateTodo?: Resolver<
+    ResolversTypes['Todo'],
+    ParentType,
+    ContextType,
+    RequireFields<MutationUpdateTodoArgs, 'id' | 'payload'>
+  >;
 };
 
 export type QueryResolvers<
@@ -214,7 +245,6 @@ export type QueryResolvers<
   ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query'],
 > = {
   _empty?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
-  getBooks?: Resolver<Array<ResolversTypes['Book']>, ParentType, ContextType>;
   searchTodos?: Resolver<
     Array<ResolversTypes['Todo']>,
     ParentType,
@@ -235,17 +265,9 @@ export type TodoResolvers<
 };
 
 export type Resolvers<ContextType = any> = {
-  Book?: BookResolvers<ContextType>;
   Mutation?: MutationResolvers<ContextType>;
   Query?: QueryResolvers<ContextType>;
   Todo?: TodoResolvers<ContextType>;
-};
-
-export type GetBooksQueryVariables = Exact<{ [key: string]: never }>;
-
-export type GetBooksQuery = {
-  __typename?: 'Query';
-  getBooks: Array<{ __typename?: 'Book'; title: string; author: string }>;
 };
 
 export type SearchTodosQueryVariables = Exact<{
@@ -264,100 +286,6 @@ export type SearchTodosQuery = {
   }>;
 };
 
-/**
- * @param resolver a function that accepts a captured request and may return a mocked response.
- * @see https://mswjs.io/docs/basics/response-resolver
- * @example
- * mockGetBooksQuery((req, res, ctx) => {
- *   return res(
- *     ctx.data({ getBooks })
- *   )
- * })
- */
-export const mockGetBooksQuery = (
-  resolver: ResponseResolver<
-    GraphQLRequest<GetBooksQueryVariables>,
-    GraphQLContext<GetBooksQuery>,
-    any
-  >,
-) => graphql.query<GetBooksQuery, GetBooksQueryVariables>('getBooks', resolver);
-
-/**
- * @param resolver a function that accepts a captured request and may return a mocked response.
- * @see https://mswjs.io/docs/basics/response-resolver
- * @example
- * mockSearchTodosQuery((req, res, ctx) => {
- *   const { userId, searchParams } = req.variables;
- *   return res(
- *     ctx.data({ searchTodos })
- *   )
- * })
- */
-export const mockSearchTodosQuery = (
-  resolver: ResponseResolver<
-    GraphQLRequest<SearchTodosQueryVariables>,
-    GraphQLContext<SearchTodosQuery>,
-    any
-  >,
-) =>
-  graphql.query<SearchTodosQuery, SearchTodosQueryVariables>(
-    'searchTodos',
-    resolver,
-  );
-
-export const GetBooksDocument = gql`
-  query getBooks {
-    getBooks {
-      title
-      author
-    }
-  }
-`;
-
-/**
- * __useGetBooksQuery__
- *
- * To run a query within a React component, call `useGetBooksQuery` and pass it any options that fit your needs.
- * When your component renders, `useGetBooksQuery` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useGetBooksQuery({
- *   variables: {
- *   },
- * });
- */
-export function useGetBooksQuery(
-  baseOptions?: Apollo.QueryHookOptions<GetBooksQuery, GetBooksQueryVariables>,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useQuery<GetBooksQuery, GetBooksQueryVariables>(
-    GetBooksDocument,
-    options,
-  );
-}
-export function useGetBooksLazyQuery(
-  baseOptions?: Apollo.LazyQueryHookOptions<
-    GetBooksQuery,
-    GetBooksQueryVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useLazyQuery<GetBooksQuery, GetBooksQueryVariables>(
-    GetBooksDocument,
-    options,
-  );
-}
-export type GetBooksQueryHookResult = ReturnType<typeof useGetBooksQuery>;
-export type GetBooksLazyQueryHookResult = ReturnType<
-  typeof useGetBooksLazyQuery
->;
-export type GetBooksQueryResult = Apollo.QueryResult<
-  GetBooksQuery,
-  GetBooksQueryVariables
->;
 export const SearchTodosDocument = gql`
   query searchTodos($userId: Int!, $searchParams: SearchTodoParams) {
     searchTodos(userId: $userId, searchParams: $searchParams) {
@@ -418,3 +346,26 @@ export type SearchTodosQueryResult = Apollo.QueryResult<
   SearchTodosQuery,
   SearchTodosQueryVariables
 >;
+
+/**
+ * @param resolver a function that accepts a captured request and may return a mocked response.
+ * @see https://mswjs.io/docs/basics/response-resolver
+ * @example
+ * mockSearchTodosQuery((req, res, ctx) => {
+ *   const { userId, searchParams } = req.variables;
+ *   return res(
+ *     ctx.data({ searchTodos })
+ *   )
+ * })
+ */
+export const mockSearchTodosQuery = (
+  resolver: ResponseResolver<
+    GraphQLRequest<SearchTodosQueryVariables>,
+    GraphQLContext<SearchTodosQuery>,
+    any
+  >,
+) =>
+  graphql.query<SearchTodosQuery, SearchTodosQueryVariables>(
+    'searchTodos',
+    resolver,
+  );
