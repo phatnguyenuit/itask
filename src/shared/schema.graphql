@@ -1,5 +1,5 @@
 input CreateTodoPayload {
-  completed: Boolean!
+  isCompleted: Boolean!
   title: String!
   userId: Int!
 }
@@ -13,23 +13,32 @@ type Mutation {
 
 type Query {
   _empty: String
-  searchTodos(searchParams: SearchTodoParams, userId: Int!): [Todo!]!
+  getTodo(id: Int!): Todo!
+  searchTodos(searchParams: SearchTodoParams, userId: Int!): SearchTodoResponse
 }
 
 input SearchTodoParams {
-  completed: Boolean
   id: Int
+  isCompleted: Boolean
   title: String
 }
 
+type SearchTodoResponse {
+  page: Int!
+  pageSize: Int!
+  todos: [Todo!]!
+  total: Int!
+  totalPages: Int!
+}
+
 type Todo {
-  completed: Boolean!
   id: Int!
+  isCompleted: Boolean!
   title: String!
   userId: Int!
 }
 
 input UpdateTodoPayload {
-  completed: Boolean
+  isCompleted: Boolean
   title: String
 }

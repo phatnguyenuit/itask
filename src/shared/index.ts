@@ -28,7 +28,7 @@ export type Scalars = {
 };
 
 export type CreateTodoPayload = {
-  completed: Scalars['Boolean'];
+  isCompleted: Scalars['Boolean'];
   title: Scalars['String'];
   userId: Scalars['Int'];
 };
@@ -57,7 +57,12 @@ export type MutationUpdateTodoArgs = {
 export type Query = {
   __typename?: 'Query';
   _empty?: Maybe<Scalars['String']>;
-  searchTodos: Array<Todo>;
+  getTodo: Todo;
+  searchTodos?: Maybe<SearchTodoResponse>;
+};
+
+export type QueryGetTodoArgs = {
+  id: Scalars['Int'];
 };
 
 export type QuerySearchTodosArgs = {
@@ -66,21 +71,30 @@ export type QuerySearchTodosArgs = {
 };
 
 export type SearchTodoParams = {
-  completed?: InputMaybe<Scalars['Boolean']>;
   id?: InputMaybe<Scalars['Int']>;
+  isCompleted?: InputMaybe<Scalars['Boolean']>;
   title?: InputMaybe<Scalars['String']>;
+};
+
+export type SearchTodoResponse = {
+  __typename?: 'SearchTodoResponse';
+  page: Scalars['Int'];
+  pageSize: Scalars['Int'];
+  todos: Array<Todo>;
+  total: Scalars['Int'];
+  totalPages: Scalars['Int'];
 };
 
 export type Todo = {
   __typename?: 'Todo';
-  completed: Scalars['Boolean'];
   id: Scalars['Int'];
+  isCompleted: Scalars['Boolean'];
   title: Scalars['String'];
   userId: Scalars['Int'];
 };
 
 export type UpdateTodoPayload = {
-  completed?: InputMaybe<Scalars['Boolean']>;
+  isCompleted?: InputMaybe<Scalars['Boolean']>;
   title?: InputMaybe<Scalars['String']>;
 };
 
@@ -197,6 +211,7 @@ export type ResolversTypes = {
   Mutation: ResolverTypeWrapper<{}>;
   Query: ResolverTypeWrapper<{}>;
   SearchTodoParams: SearchTodoParams;
+  SearchTodoResponse: ResolverTypeWrapper<SearchTodoResponse>;
   String: ResolverTypeWrapper<Scalars['String']>;
   Todo: ResolverTypeWrapper<Todo>;
   UpdateTodoPayload: UpdateTodoPayload;
@@ -210,6 +225,7 @@ export type ResolversParentTypes = {
   Mutation: {};
   Query: {};
   SearchTodoParams: SearchTodoParams;
+  SearchTodoResponse: SearchTodoResponse;
   String: Scalars['String'];
   Todo: Todo;
   UpdateTodoPayload: UpdateTodoPayload;
@@ -245,20 +261,38 @@ export type QueryResolvers<
   ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query'],
 > = {
   _empty?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  getTodo?: Resolver<
+    ResolversTypes['Todo'],
+    ParentType,
+    ContextType,
+    RequireFields<QueryGetTodoArgs, 'id'>
+  >;
   searchTodos?: Resolver<
-    Array<ResolversTypes['Todo']>,
+    Maybe<ResolversTypes['SearchTodoResponse']>,
     ParentType,
     ContextType,
     RequireFields<QuerySearchTodosArgs, 'userId'>
   >;
 };
 
+export type SearchTodoResponseResolvers<
+  ContextType = any,
+  ParentType extends ResolversParentTypes['SearchTodoResponse'] = ResolversParentTypes['SearchTodoResponse'],
+> = {
+  page?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
+  pageSize?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
+  todos?: Resolver<Array<ResolversTypes['Todo']>, ParentType, ContextType>;
+  total?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
+  totalPages?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
 export type TodoResolvers<
   ContextType = any,
   ParentType extends ResolversParentTypes['Todo'] = ResolversParentTypes['Todo'],
 > = {
-  completed?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>;
   id?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
+  isCompleted?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>;
   title?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   userId?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
@@ -267,6 +301,7 @@ export type TodoResolvers<
 export type Resolvers<ContextType = any> = {
   Mutation?: MutationResolvers<ContextType>;
   Query?: QueryResolvers<ContextType>;
+  SearchTodoResponse?: SearchTodoResponseResolvers<ContextType>;
   Todo?: TodoResolvers<ContextType>;
 };
 
@@ -277,22 +312,93 @@ export type SearchTodosQueryVariables = Exact<{
 
 export type SearchTodosQuery = {
   __typename?: 'Query';
-  searchTodos: Array<{
+  searchTodos?:
+    | {
+        __typename?: 'SearchTodoResponse';
+        page: number;
+        pageSize: number;
+        total: number;
+        totalPages: number;
+        todos: Array<{
+          __typename?: 'Todo';
+          id: number;
+          userId: number;
+          title: string;
+          isCompleted: boolean;
+        }>;
+      }
+    | null
+    | undefined;
+};
+
+export type GetTodoQueryVariables = Exact<{
+  getTodoId: Scalars['Int'];
+}>;
+
+export type GetTodoQuery = {
+  __typename?: 'Query';
+  getTodo: {
     __typename?: 'Todo';
     id: number;
     userId: number;
     title: string;
-    completed: boolean;
-  }>;
+    isCompleted: boolean;
+  };
+};
+
+export type CreateTodoMutationVariables = Exact<{
+  payload: CreateTodoPayload;
+}>;
+
+export type CreateTodoMutation = {
+  __typename?: 'Mutation';
+  createTodo: {
+    __typename?: 'Todo';
+    id: number;
+    userId: number;
+    title: string;
+    isCompleted: boolean;
+  };
+};
+
+export type UpdateTodoMutationVariables = Exact<{
+  updateTodoId: Scalars['Int'];
+  payload: UpdateTodoPayload;
+}>;
+
+export type UpdateTodoMutation = {
+  __typename?: 'Mutation';
+  updateTodo: {
+    __typename?: 'Todo';
+    id: number;
+    userId: number;
+    title: string;
+    isCompleted: boolean;
+  };
+};
+
+export type DeleteTodoMutationVariables = Exact<{
+  deleteTodoId: Scalars['Int'];
+}>;
+
+export type DeleteTodoMutation = {
+  __typename?: 'Mutation';
+  deleteTodo: boolean;
 };
 
 export const SearchTodosDocument = gql`
   query searchTodos($userId: Int!, $searchParams: SearchTodoParams) {
     searchTodos(userId: $userId, searchParams: $searchParams) {
-      id
-      userId
-      title
-      completed
+      page
+      pageSize
+      total
+      totalPages
+      todos {
+        id
+        userId
+        title
+        isCompleted
+      }
     }
   }
 `;
@@ -346,6 +452,215 @@ export type SearchTodosQueryResult = Apollo.QueryResult<
   SearchTodosQuery,
   SearchTodosQueryVariables
 >;
+export const GetTodoDocument = gql`
+  query getTodo($getTodoId: Int!) {
+    getTodo(id: $getTodoId) {
+      id
+      userId
+      title
+      isCompleted
+    }
+  }
+`;
+
+/**
+ * __useGetTodoQuery__
+ *
+ * To run a query within a React component, call `useGetTodoQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetTodoQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetTodoQuery({
+ *   variables: {
+ *      getTodoId: // value for 'getTodoId'
+ *   },
+ * });
+ */
+export function useGetTodoQuery(
+  baseOptions: Apollo.QueryHookOptions<GetTodoQuery, GetTodoQueryVariables>,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useQuery<GetTodoQuery, GetTodoQueryVariables>(
+    GetTodoDocument,
+    options,
+  );
+}
+export function useGetTodoLazyQuery(
+  baseOptions?: Apollo.LazyQueryHookOptions<
+    GetTodoQuery,
+    GetTodoQueryVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useLazyQuery<GetTodoQuery, GetTodoQueryVariables>(
+    GetTodoDocument,
+    options,
+  );
+}
+export type GetTodoQueryHookResult = ReturnType<typeof useGetTodoQuery>;
+export type GetTodoLazyQueryHookResult = ReturnType<typeof useGetTodoLazyQuery>;
+export type GetTodoQueryResult = Apollo.QueryResult<
+  GetTodoQuery,
+  GetTodoQueryVariables
+>;
+export const CreateTodoDocument = gql`
+  mutation createTodo($payload: CreateTodoPayload!) {
+    createTodo(payload: $payload) {
+      id
+      userId
+      title
+      isCompleted
+    }
+  }
+`;
+export type CreateTodoMutationFn = Apollo.MutationFunction<
+  CreateTodoMutation,
+  CreateTodoMutationVariables
+>;
+
+/**
+ * __useCreateTodoMutation__
+ *
+ * To run a mutation, you first call `useCreateTodoMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useCreateTodoMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [createTodoMutation, { data, loading, error }] = useCreateTodoMutation({
+ *   variables: {
+ *      payload: // value for 'payload'
+ *   },
+ * });
+ */
+export function useCreateTodoMutation(
+  baseOptions?: Apollo.MutationHookOptions<
+    CreateTodoMutation,
+    CreateTodoMutationVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useMutation<CreateTodoMutation, CreateTodoMutationVariables>(
+    CreateTodoDocument,
+    options,
+  );
+}
+export type CreateTodoMutationHookResult = ReturnType<
+  typeof useCreateTodoMutation
+>;
+export type CreateTodoMutationResult =
+  Apollo.MutationResult<CreateTodoMutation>;
+export type CreateTodoMutationOptions = Apollo.BaseMutationOptions<
+  CreateTodoMutation,
+  CreateTodoMutationVariables
+>;
+export const UpdateTodoDocument = gql`
+  mutation updateTodo($updateTodoId: Int!, $payload: UpdateTodoPayload!) {
+    updateTodo(id: $updateTodoId, payload: $payload) {
+      id
+      userId
+      title
+      isCompleted
+    }
+  }
+`;
+export type UpdateTodoMutationFn = Apollo.MutationFunction<
+  UpdateTodoMutation,
+  UpdateTodoMutationVariables
+>;
+
+/**
+ * __useUpdateTodoMutation__
+ *
+ * To run a mutation, you first call `useUpdateTodoMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useUpdateTodoMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [updateTodoMutation, { data, loading, error }] = useUpdateTodoMutation({
+ *   variables: {
+ *      updateTodoId: // value for 'updateTodoId'
+ *      payload: // value for 'payload'
+ *   },
+ * });
+ */
+export function useUpdateTodoMutation(
+  baseOptions?: Apollo.MutationHookOptions<
+    UpdateTodoMutation,
+    UpdateTodoMutationVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useMutation<UpdateTodoMutation, UpdateTodoMutationVariables>(
+    UpdateTodoDocument,
+    options,
+  );
+}
+export type UpdateTodoMutationHookResult = ReturnType<
+  typeof useUpdateTodoMutation
+>;
+export type UpdateTodoMutationResult =
+  Apollo.MutationResult<UpdateTodoMutation>;
+export type UpdateTodoMutationOptions = Apollo.BaseMutationOptions<
+  UpdateTodoMutation,
+  UpdateTodoMutationVariables
+>;
+export const DeleteTodoDocument = gql`
+  mutation deleteTodo($deleteTodoId: Int!) {
+    deleteTodo(id: $deleteTodoId)
+  }
+`;
+export type DeleteTodoMutationFn = Apollo.MutationFunction<
+  DeleteTodoMutation,
+  DeleteTodoMutationVariables
+>;
+
+/**
+ * __useDeleteTodoMutation__
+ *
+ * To run a mutation, you first call `useDeleteTodoMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useDeleteTodoMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [deleteTodoMutation, { data, loading, error }] = useDeleteTodoMutation({
+ *   variables: {
+ *      deleteTodoId: // value for 'deleteTodoId'
+ *   },
+ * });
+ */
+export function useDeleteTodoMutation(
+  baseOptions?: Apollo.MutationHookOptions<
+    DeleteTodoMutation,
+    DeleteTodoMutationVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useMutation<DeleteTodoMutation, DeleteTodoMutationVariables>(
+    DeleteTodoDocument,
+    options,
+  );
+}
+export type DeleteTodoMutationHookResult = ReturnType<
+  typeof useDeleteTodoMutation
+>;
+export type DeleteTodoMutationResult =
+  Apollo.MutationResult<DeleteTodoMutation>;
+export type DeleteTodoMutationOptions = Apollo.BaseMutationOptions<
+  DeleteTodoMutation,
+  DeleteTodoMutationVariables
+>;
 
 /**
  * @param resolver a function that accepts a captured request and may return a mocked response.
@@ -367,5 +682,93 @@ export const mockSearchTodosQuery = (
 ) =>
   graphql.query<SearchTodosQuery, SearchTodosQueryVariables>(
     'searchTodos',
+    resolver,
+  );
+
+/**
+ * @param resolver a function that accepts a captured request and may return a mocked response.
+ * @see https://mswjs.io/docs/basics/response-resolver
+ * @example
+ * mockGetTodoQuery((req, res, ctx) => {
+ *   const { getTodoId } = req.variables;
+ *   return res(
+ *     ctx.data({ getTodo })
+ *   )
+ * })
+ */
+export const mockGetTodoQuery = (
+  resolver: ResponseResolver<
+    GraphQLRequest<GetTodoQueryVariables>,
+    GraphQLContext<GetTodoQuery>,
+    any
+  >,
+) => graphql.query<GetTodoQuery, GetTodoQueryVariables>('getTodo', resolver);
+
+/**
+ * @param resolver a function that accepts a captured request and may return a mocked response.
+ * @see https://mswjs.io/docs/basics/response-resolver
+ * @example
+ * mockCreateTodoMutation((req, res, ctx) => {
+ *   const { payload } = req.variables;
+ *   return res(
+ *     ctx.data({ createTodo })
+ *   )
+ * })
+ */
+export const mockCreateTodoMutation = (
+  resolver: ResponseResolver<
+    GraphQLRequest<CreateTodoMutationVariables>,
+    GraphQLContext<CreateTodoMutation>,
+    any
+  >,
+) =>
+  graphql.mutation<CreateTodoMutation, CreateTodoMutationVariables>(
+    'createTodo',
+    resolver,
+  );
+
+/**
+ * @param resolver a function that accepts a captured request and may return a mocked response.
+ * @see https://mswjs.io/docs/basics/response-resolver
+ * @example
+ * mockUpdateTodoMutation((req, res, ctx) => {
+ *   const { updateTodoId, payload } = req.variables;
+ *   return res(
+ *     ctx.data({ updateTodo })
+ *   )
+ * })
+ */
+export const mockUpdateTodoMutation = (
+  resolver: ResponseResolver<
+    GraphQLRequest<UpdateTodoMutationVariables>,
+    GraphQLContext<UpdateTodoMutation>,
+    any
+  >,
+) =>
+  graphql.mutation<UpdateTodoMutation, UpdateTodoMutationVariables>(
+    'updateTodo',
+    resolver,
+  );
+
+/**
+ * @param resolver a function that accepts a captured request and may return a mocked response.
+ * @see https://mswjs.io/docs/basics/response-resolver
+ * @example
+ * mockDeleteTodoMutation((req, res, ctx) => {
+ *   const { deleteTodoId } = req.variables;
+ *   return res(
+ *     ctx.data({ deleteTodo })
+ *   )
+ * })
+ */
+export const mockDeleteTodoMutation = (
+  resolver: ResponseResolver<
+    GraphQLRequest<DeleteTodoMutationVariables>,
+    GraphQLContext<DeleteTodoMutation>,
+    any
+  >,
+) =>
+  graphql.mutation<DeleteTodoMutation, DeleteTodoMutationVariables>(
+    'deleteTodo',
     resolver,
   );

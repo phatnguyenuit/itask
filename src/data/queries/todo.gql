@@ -1,8 +1,45 @@
 query searchTodos($userId: Int!, $searchParams: SearchTodoParams) {
     searchTodos(userId: $userId, searchParams: $searchParams) {
-        id
-        userId
-        title
-        completed
+        page
+        pageSize
+        total
+        totalPages
+        todos {
+            id
+            userId
+            title
+            isCompleted
+        }
     }
+}
+
+query getTodo($getTodoId: Int!) {
+  getTodo(id: $getTodoId) {
+    id
+    userId
+    title
+    isCompleted
+  }
+}
+
+mutation createTodo($payload: CreateTodoPayload!) {
+  createTodo(payload: $payload) {
+    id
+    userId
+    title
+    isCompleted
+  }
+}
+
+mutation updateTodo($updateTodoId: Int!, $payload: UpdateTodoPayload!) {
+  updateTodo(id: $updateTodoId, payload: $payload) {
+    id
+    userId
+    title
+    isCompleted  
+  }
+}
+
+mutation deleteTodo($deleteTodoId: Int!) {
+  deleteTodo(id: $deleteTodoId)
 }
