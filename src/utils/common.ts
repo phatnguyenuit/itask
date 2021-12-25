@@ -1,3 +1,5 @@
+import { BaseResponse, SuccessResponse } from 'types/common';
+
 export const getEnv = (key: string, defaultValue?: string) => {
   const value = process.env[key] || defaultValue;
 
@@ -7,3 +9,9 @@ export const getEnv = (key: string, defaultValue?: string) => {
 
   return value;
 };
+
+export function isSuccessResponse<TData>(
+  res: BaseResponse<TData>,
+): res is SuccessResponse<TData> {
+  return res.kind === 'success';
+}

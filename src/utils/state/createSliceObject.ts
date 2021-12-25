@@ -45,13 +45,15 @@ const createSliceObject = <
     ]),
   );
 
-  const reducer: Reducer<TState, Action<string> | PayloadAction<string, any>> =
-    (state = initialState, action) => {
-      const { type, payload } = action as PayloadAction<string, any>;
-      const reduce = caseReducers[type];
-      const intermediateState = reduce ? reduce(state, payload) : state;
-      return extraReducer?.(intermediateState, action) ?? intermediateState;
-    };
+  const reducer: Reducer<
+    TState,
+    Action<string> | PayloadAction<string, any>
+  > = (state = initialState, action) => {
+    const { type, payload } = action as PayloadAction<string, any>;
+    const reduce = caseReducers[type];
+    const intermediateState = reduce ? reduce(state, payload) : state;
+    return extraReducer?.(intermediateState, action) ?? intermediateState;
+  };
 
   const saga = function* saga() {
     yield all(

@@ -1,6 +1,7 @@
 import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
 import { useCallback, useState } from 'react';
 
+import { ITASK_API_URL } from './constants/common';
 import AppBar from './components/app-bar';
 import HelloWidget from './components/hello-widget';
 import HelloInput from './components/hello-input';
@@ -8,16 +9,16 @@ import UsersContainer from './components/users-container';
 import TodosContainer from './components/todos-container';
 
 import { User } from './types/user';
-import { getEnv } from './utils/common';
 
 import './App.css';
 
 const client = new ApolloClient({
-  uri: getEnv('REACT_APP_ITASK_GRAPHQL_URL'),
+  uri: `${ITASK_API_URL}/graphql`,
+  // uri: 'https://itask-api.herokuapp.com/graphql',
   cache: new InMemoryCache(),
   headers: {
     'x-access-token':
-      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImVtYWlsIjoiZmFzdC5uZ3V5ZW5AZ21haWwuY29tIiwibmFtZSI6IkZhc3QgTmd1eWVuIiwiaWF0IjoxNjQwNDMxOTcyLCJleHAiOjE2NDA1MTgzNzJ9.4XpuCCyFyCeI6-vGpTkE19bn9DG7iYIPqx8aZRVQ1qg',
+      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImVtYWlsIjoiZmFzdC5uZ3V5ZW5AZ21haWwuY29tIiwibmFtZSI6IkZhc3QgTmd1eWVuIiwiaWF0IjoxNjQwNDA4ODU4LCJleHAiOjE2NDA0OTUyNTh9.OgnKF0POyadwtWjD-2Jv69ihGk9ovq4218mFs7IIMkE',
   },
 });
 
