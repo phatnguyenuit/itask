@@ -17,8 +17,7 @@ const styles = (theme: Theme) =>
       }),
     },
     rightContentShift: {
-      width: `calc(100% - ${sidebarWidth}px)`,
-      marginLeft: sidebarWidth,
+      paddingLeft: sidebarWidth,
       transition: theme.transitions.create(['margin', 'width'], {
         easing: theme.transitions.easing.easeOut,
         duration: theme.transitions.duration.enteringScreen,
