@@ -17,8 +17,7 @@ const client = new ApolloClient({
   // uri: 'https://itask-api.herokuapp.com/graphql',
   cache: new InMemoryCache(),
   headers: {
-    'x-access-token':
-      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImVtYWlsIjoiZmFzdC5uZ3V5ZW5AZ21haWwuY29tIiwibmFtZSI6IkZhc3QgTmd1eWVuIiwiaWF0IjoxNjQwNDA4ODU4LCJleHAiOjE2NDA0OTUyNTh9.OgnKF0POyadwtWjD-2Jv69ihGk9ovq4218mFs7IIMkE',
+    'x-access-token': '',
   },
 });
 

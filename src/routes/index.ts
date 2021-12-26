@@ -9,6 +9,11 @@ export const sidebarRoutes: RouteInfo[] = [
     icon: 'dashboard',
     component: lazy(() => import('pages/dashboard')),
   },
+  {
+    ...appPaths.todos(),
+    icon: 'list',
+    component: lazy(() => import('pages/todos')),
+  },
 ];
 
 // App Routes that don't have links on Sidebar

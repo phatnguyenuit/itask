@@ -12,4 +12,7 @@ export const appPaths = createPaths('app', {
   dashboard: {
     title: 'Dashboard',
   },
+  todos: {
+    title: 'Todos',
+  },
 });

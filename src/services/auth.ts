@@ -67,6 +67,7 @@ class AuthService extends BaseService {
 
         if (decodedPayload) {
           storageService.setItem<string>('username', decodedPayload.name);
+          storageService.setItem<number>('userId', decodedPayload.userId);
         }
       }
     }
