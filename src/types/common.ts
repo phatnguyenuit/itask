@@ -58,6 +58,7 @@ export interface LinkInfo extends AuthInfo {
   icon: FontIconType;
   title: string;
   path: string;
+  shortPath: string;
 }
 
 export interface RouteInfo extends LinkInfo, OmitFrom<RouteProps, 'path'> {

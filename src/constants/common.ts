@@ -7,7 +7,7 @@ export const NETWORK_TIMEOUT = 30000;
 // STRINGS
 export const ITASK_API_URL = getEnv('REACT_APP_ITASK_URL');
 
-export const APP_NAME = 'iTask - Task Management';
+export const APP_NAME = 'iTask';
 export const NETWORK_TIMEOUT_MESSAGE = 'Network Timeout';
 
 // OBJECTS

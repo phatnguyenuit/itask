@@ -19,7 +19,7 @@ const styles = ({ spacing, breakpoints }: Theme) =>
       display: 'flex',
       flexDirection: 'column',
       justifyContent: 'center',
-      padding: `${spacing(9)}px 6%`,
+      padding: `${spacing(9)} 6%`,
     },
     leftColumn: {
       position: 'relative',
@@ -62,9 +62,6 @@ const styles = ({ spacing, breakpoints }: Theme) =>
       fontSize: 45,
       fontWeight: 'bold',
       lineHeight: 0.9,
-    },
-    versionInfo: {
-      marginTop: spacing(1.5),
     },
   });
 

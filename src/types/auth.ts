@@ -1,10 +1,10 @@
 export interface LoginRequestData {
-  username: string;
+  email: string;
   password: string;
 }
 
 export interface LoginResponseData {
-  token: string;
+  accessToken: string;
   accountOwner: string;
   staff_id: string;
   apartment_id: string;

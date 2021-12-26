@@ -4,7 +4,7 @@ import clsx from 'clsx';
 import useToggle from 'hooks/useToggle';
 import useLogoutWatcher from 'hooks/auth/useLogoutWatcher';
 import { sidebarRoutes, appRoutes } from 'routes';
-import Routes from 'routes/components/routes';
+import MyRoutes from 'routes/components/my-routes';
 import { RouteInfo, AuthInfo } from 'types/common';
 
 import Sidebar from '../sidebar';
@@ -50,7 +50,7 @@ export const AppLayoutComponent: FC = () => {
           [classes.rightContentShift]: showSidebar,
         })}
       >
-        <Routes routes={appRoutes} />
+        <MyRoutes routes={appRoutes} />
       </div>
     </div>
   );

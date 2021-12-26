@@ -1,9 +1,11 @@
 import { FC, memo } from 'react';
 import { Grid, Typography } from '@mui/material';
 import clsx from 'clsx';
-import Routes from 'routes/components/routes';
+
+import MyRoutes from 'routes/components/my-routes';
 import { APP_NAME } from 'constants/common';
 import { authRoutes } from 'routes';
+
 import useStyles from './styles';
 
 export const AuthLayoutComponent: FC = () => {
@@ -30,7 +32,7 @@ export const AuthLayoutComponent: FC = () => {
         xs={12}
         md={6}
       >
-        <Routes routes={authRoutes} />
+        <MyRoutes routes={authRoutes} />
       </Grid>
     </Grid>
   );

@@ -35,7 +35,7 @@ const App: React.FC = () => {
                   <Route path="/auth/*" element={<AuthLayout />} />
                   <Route
                     path=""
-                    element={<Navigate to="app/dashboard" replace />}
+                    element={<Navigate to="/app/dashboard" replace />}
                   />
                   <Route path="*" element={<NotFoundPage />} />
                 </Routes>

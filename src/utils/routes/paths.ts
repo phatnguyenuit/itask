@@ -22,7 +22,12 @@ export const createPaths = <TMap extends Record<string, PathRule<any>>>(
             default:
               pathname = toKebabCase(key);
           }
-          return { ...rest, title, path: `/${basename}/${pathname}` };
+          return {
+            ...rest,
+            title,
+            shortPath: pathname,
+            path: `/${basename}/${pathname}`,
+          };
         }, pathRule),
       ];
     }),
@@ -33,6 +38,7 @@ export const createPaths = <TMap extends Record<string, PathRule<any>>>(
 
 export interface PathRule<TArgs extends any[]> extends AuthInfo {
   title: string;
+  shortPath?: string;
   path?: string | ((...args: TArgs) => string);
   protectedRoute?: boolean;
 }
@@ -40,6 +46,7 @@ export interface PathRule<TArgs extends any[]> extends AuthInfo {
 export interface PathInfo extends AuthInfo {
   title: string;
   path: string;
+  shortPath: string;
   protectedRoute?: boolean;
 }
 

@@ -48,18 +48,18 @@ class AuthService extends BaseService {
     return !!authData;
   };
 
-  login = async ({ username, password }: LoginRequestData) => {
+  login = async ({ email, password }: LoginRequestData) => {
     const res = await this.requestData<LoginResponseData>({
       url: '/v1/auth/login',
-      data: { username, password },
+      data: { email, password },
       method: 'POST',
     });
 
     if (isSuccessResponse(res)) {
-      const { token } = res.data;
+      const { accessToken } = res.data;
 
-      if (token) {
-        const encryptedToken = encrypt(token);
+      if (accessToken) {
+        const encryptedToken = encrypt(accessToken);
         this.setEncryptedToken(encryptedToken);
       }
     }

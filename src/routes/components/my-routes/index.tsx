@@ -29,18 +29,18 @@ export const RoutesComponent: FC<RoutesProps> = ({ routes }) => {
       }
     >
       <RouterRoutes>
-        {/* {allRoutes.map(({ path, ...props }) => (
-          <Route {...props} key={path} path={path} />
-        ))} */}
-        <Route element={<Navigate to="/not-found" />} />
+        {allRoutes.map(({ path, shortPath, ...props }) => (
+          <Route {...props} key={path} path={shortPath} />
+        ))}
+        <Route path="*" element={<Navigate replace to="/not-found" />} />
       </RouterRoutes>
     </Suspense>
   );
 };
 
-const Routes = memo(RoutesComponent);
-Routes.displayName = 'Routes';
-export default Routes;
+const MyRoutes = memo(RoutesComponent);
+MyRoutes.displayName = 'MyRoutes';
+export default MyRoutes;
 
 export interface RoutesProps {
   routes: RouteInfo[];
