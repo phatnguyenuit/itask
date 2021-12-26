@@ -1,9 +1,10 @@
 import { FC, memo } from 'react';
-import { Grid, Typography } from '@mui/material';
+// import { Grid, Typography } from '@mui/material';
+import { Grid } from '@mui/material';
 import clsx from 'clsx';
 
 import MyRoutes from 'routes/components/my-routes';
-import { APP_NAME } from 'constants/common';
+// import { APP_NAME } from 'constants/common';
 import { authRoutes } from 'routes';
 
 import useStyles from './styles';
@@ -19,12 +20,12 @@ export const AuthLayoutComponent: FC = () => {
         xs={12}
         md={6}
       >
-        <Typography className={classes.subtitle} variant="subtitle1">
+        {/* <Typography className={classes.subtitle} variant="subtitle1">
           {APP_NAME}
         </Typography>
         <Typography className={classes.title} variant="h1">
           Task Management
-        </Typography>
+        </Typography> */}
       </Grid>
       <Grid
         className={clsx(classes.column, classes.rightColumn)}

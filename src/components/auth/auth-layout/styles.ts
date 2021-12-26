@@ -1,18 +1,18 @@
 import { Theme } from '@mui/material';
 import { makeStyles, createStyles } from '@mui/styles';
 
-import IntroBackground from 'assets/images/intro_background.svg';
+import authBackground from 'assets/images/undraw_completed_tasks_vs6q.svg';
 
 const styles = ({ spacing, breakpoints }: Theme) =>
   createStyles({
     root: {
       minHeight: '100vh',
-      backgroundImage: `url(${IntroBackground})`,
+      backgroundImage: `url(${authBackground})`,
       backgroundSize: '50% 50%',
       backgroundRepeat: 'no-repeat',
       backgroundPosition: 'left',
       [breakpoints.down('sm')]: {
-        backgroundPosition: '50% 0',
+        backgroundPosition: 'center top',
       },
     },
     column: {
@@ -24,8 +24,8 @@ const styles = ({ spacing, breakpoints }: Theme) =>
     leftColumn: {
       position: 'relative',
       alignItems: 'flex-end',
-      color: 'orange',
-      backgroundPosition: 'center',
+      color: 'blue',
+      backgroundPosition: 'left bottom',
       backgroundRepeat: 'no-repeat',
       backgroundSize: 'cover',
       [breakpoints.down('sm')]: {

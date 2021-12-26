@@ -62,26 +62,26 @@ export const MenubarComponent: FC<MenubarProps> = ({
             <ListItemIcon>
               <FontIcon type="vpn_key" />
             </ListItemIcon>
-            <ListItemText primary="Đổi mật khẩu" />
+            <ListItemText primary="Change password" />
           </MenuItem> */}
           <MenuItem component="button" onClick={openDialog}>
             <ListItemIcon>
               <FontIcon type="exit_to_app" />
             </ListItemIcon>
-            <ListItemText primary="Đăng xuất" />
+            <ListItemText primary="Logout" />
           </MenuItem>
         </DropdownMenu>
       </Toolbar>
       <ConfirmationDialog
-        cancelText="Hủy bỏ"
-        confirmText="Đăng xuất"
-        heading="Đăng xuất tài khoản"
+        cancelText="Cancel"
+        confirmText="Logout"
+        heading="Logging out"
         onCancel={closeDialog}
         onClose={closeDialog}
         onConfirm={authService.logout}
         open={showDialog}
       >
-        Bạn sẽ quay lại màn hình đăng nhập.
+        You will be returned to the login screen.
       </ConfirmationDialog>
     </AppBar>
   );

@@ -1,5 +1,10 @@
 import { Suspense, lazy } from 'react';
-import { Box, CssBaseline, ThemeProvider } from '@mui/material';
+import {
+  Box,
+  CssBaseline,
+  ThemeProvider,
+  StyledEngineProvider,
+} from '@mui/material';
 import { Routes, Route, Navigate, BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { SnackbarProvider } from 'notistack';
@@ -26,21 +31,23 @@ const App: React.FC = () => {
           <SnackbarProvider maxSnack={4}>
             <CssBaseline />
             <Toast />
-            <BrowserRouter>
-              <Suspense
-                fallback={<Spin className={classes.loadingPage} loading />}
-              >
-                <Routes>
-                  <Route path="/app/*" element={<AppLayout />} />
-                  <Route path="/auth/*" element={<AuthLayout />} />
-                  <Route
-                    path=""
-                    element={<Navigate to="/app/dashboard" replace />}
-                  />
-                  <Route path="*" element={<NotFoundPage />} />
-                </Routes>
-              </Suspense>
-            </BrowserRouter>
+            <StyledEngineProvider injectFirst>
+              <BrowserRouter>
+                <Suspense
+                  fallback={<Spin className={classes.loadingPage} loading />}
+                >
+                  <Routes>
+                    <Route path="/app/*" element={<AppLayout />} />
+                    <Route path="/auth/*" element={<AuthLayout />} />
+                    <Route
+                      path=""
+                      element={<Navigate to="/app/dashboard" replace />}
+                    />
+                    <Route path="*" element={<NotFoundPage />} />
+                  </Routes>
+                </Suspense>
+              </BrowserRouter>
+            </StyledEngineProvider>
           </SnackbarProvider>
         </ThemeProvider>
       </Provider>

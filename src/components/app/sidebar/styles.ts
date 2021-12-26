@@ -9,6 +9,8 @@ const styles = (theme: Theme) =>
     homeLink: {
       lineHeight: 0,
       color: theme.palette.getContrastText(theme.palette.common.white),
+      textTransform: 'none',
+      textDecoration: 'none',
     },
     menuItem: {
       color: theme.palette.common.black,

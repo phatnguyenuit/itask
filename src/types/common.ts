@@ -1,3 +1,4 @@
+import React from 'react';
 import { RouteProps } from 'react-router-dom';
 import { FontIconType } from './fontIcons';
 
@@ -55,13 +56,16 @@ export interface AuthInfo {
 }
 
 export interface LinkInfo extends AuthInfo {
-  icon: FontIconType;
+  icon?: FontIconType;
   title: string;
   path: string;
   shortPath: string;
 }
 
-export interface RouteInfo extends LinkInfo, OmitFrom<RouteProps, 'path'> {
+export interface RouteInfo
+  extends LinkInfo,
+    OmitFrom<RouteProps, 'path' | 'element'> {
+  component: React.ComponentType<any>;
   isProtected?: boolean;
   childRoutes?: RouteInfo[];
 }

@@ -21,9 +21,10 @@ class AuthService extends BaseService {
 
   decodeToken = (token: string): AuthData | undefined => {
     try {
-      const { role } = jwtDecode<TokenPayload>(token);
+      const decodedPayload = jwtDecode<TokenPayload>(token);
+
       return {
-        role,
+        ...decodedPayload,
         token,
       };
     } catch (error) {
@@ -61,6 +62,12 @@ class AuthService extends BaseService {
       if (accessToken) {
         const encryptedToken = encrypt(accessToken);
         this.setEncryptedToken(encryptedToken);
+
+        const decodedPayload = this.decodeToken(accessToken);
+
+        if (decodedPayload) {
+          storageService.setItem<string>('username', decodedPayload.name);
+        }
       }
     }
 
@@ -100,11 +107,16 @@ const authService = new AuthService('as');
 export default authService;
 
 export interface AuthData {
-  role: string;
+  email: string;
+  exp: number;
+  name: string;
+  userId: number;
   token: string;
 }
 
 interface TokenPayload {
+  email: string;
   exp: number;
-  role: string;
+  name: string;
+  userId: number;
 }

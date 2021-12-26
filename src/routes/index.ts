@@ -2,15 +2,12 @@ import { lazy } from 'react';
 import { RouteInfo } from 'types/common';
 import { appPaths, authPaths } from './paths';
 
-const Dashboard = lazy(() => import('pages/dashboard'));
-const Login = lazy(() => import('pages/auth/login'));
-
 // App Routes with links on Sidebar
 export const sidebarRoutes: RouteInfo[] = [
   {
     ...appPaths.dashboard(),
-    icon: 'access_alarm',
-    element: <Dashboard />,
+    icon: 'dashboard',
+    component: lazy(() => import('pages/dashboard')),
   },
 ];
 
@@ -23,7 +20,6 @@ export const appRoutes = [...sidebarRoutes, ...subRoutes];
 export const authRoutes: RouteInfo[] = [
   {
     ...authPaths.login(),
-    icon: 'access_alarm',
-    element: <Login />,
+    component: lazy(() => import('pages/auth/login')),
   },
 ];

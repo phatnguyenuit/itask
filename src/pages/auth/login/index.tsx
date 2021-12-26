@@ -18,7 +18,7 @@ const Login: React.FC = () => {
     <AuthContent title="Login">
       <Box className={classes.root}>
         <Typography className={classes.title} variant="h2" color="primary">
-          Welcome back
+          Welcome back!
         </Typography>
         <Spin loading={loading}>
           <form className={classes.form} onSubmit={handleLogin}>

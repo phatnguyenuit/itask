@@ -29,9 +29,16 @@ export const RoutesComponent: FC<RoutesProps> = ({ routes }) => {
       }
     >
       <RouterRoutes>
-        {allRoutes.map(({ path, shortPath, ...props }) => (
-          <Route {...props} key={path} path={shortPath} />
-        ))}
+        {allRoutes.map(
+          ({ path, shortPath, component: Component, ...props }) => (
+            <Route
+              {...props}
+              key={path}
+              path={shortPath}
+              element={<Component />}
+            />
+          ),
+        )}
         <Route path="*" element={<Navigate replace to="/not-found" />} />
       </RouterRoutes>
     </Suspense>

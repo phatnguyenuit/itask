@@ -1,15 +1,16 @@
 import { Theme } from '@mui/material';
 import { makeStyles, createStyles } from '@mui/styles';
-import IntroBackground from 'assets/images/intro_background.svg';
+import dashboardBackground from 'assets/images/undraw_taking_notes_re_bnaf.svg';
 
 const styles = (theme: Theme) =>
   createStyles({
     root: {
       color: theme.palette.primary.main,
-      backgroundImage: `url(${IntroBackground})`,
+      backgroundImage: `url(${dashboardBackground})`,
       backgroundSize: '100% 100%',
       backgroundRepeat: 'no-repeat',
       backgroundPosition: 'right bottom',
+      height: '100%',
     },
     text: {
       marginTop: theme.spacing(1),

@@ -4,8 +4,8 @@ import authService from 'services/auth';
 import useBackendServiceCallback from 'hooks/useBackendServiceCallback';
 
 const initialLoginValues: LoginFormData = {
-  email: 'fast.nguyen@gmail.com',
-  password: 'New=Password!@123',
+  email: '',
+  password: '',
 };
 
 export const useLoginForm = () => {
