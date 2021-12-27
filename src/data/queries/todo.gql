@@ -1,16 +1,16 @@
 query searchTodos($userId: Int!, $searchParams: SearchTodoParams) {
-    searchTodos(userId: $userId, searchParams: $searchParams) {
-        page
-        pageSize
-        total
-        totalPages
-        todos {
-            id
-            userId
-            title
-            isCompleted
-        }
+  searchTodos(userId: $userId, searchParams: $searchParams) {
+    page
+    pageSize
+    total
+    totalPages
+    todos {
+      id
+      userId
+      title
+      isCompleted
     }
+  }
 }
 
 query getTodo($getTodoId: Int!) {
@@ -36,7 +36,7 @@ mutation updateTodo($updateTodoId: Int!, $payload: UpdateTodoPayload!) {
     id
     userId
     title
-    isCompleted  
+    isCompleted
   }
 }
 

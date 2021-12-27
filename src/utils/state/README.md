@@ -2,11 +2,11 @@
 
 Table of content
 
-- [State utilities](#state-utilities)
-  - [create Store](#create-store)
-  - [create Slice](#create-slice)
-    - [create Slice Object](#create-slice-object)
-    - [create Reducer Object](#create-reducer-object)
+-   [State utilities](#state-utilities)
+    -   [create Store](#create-store)
+    -   [create Slice](#create-slice)
+        -   [create Slice Object](#create-slice-object)
+        -   [create Reducer Object](#create-reducer-object)
 
 ## [create Store](./createStore.ts)
 
@@ -17,6 +17,7 @@ So what is `slices` ?
 > Extended idea from [@redux/toolkit](https://redux-toolkit.js.org), my slice includes: `initialState`, `name`, `reducer`, `actions` and `saga`.
 
 Purpose
+
 > Gather all things about redux eco-system into only one place to manage easily.
 
 Input: `Slices` and `Middleware[]` (optional). Saga middleware is added behind the scenes.
@@ -31,9 +32,9 @@ import slice1 from 'states/slice1';
 import slice2 from 'states/slice2';
 
 const store = createStore({
-   slice1,
-   slice2
- });
+    slice1,
+    slice2,
+});
 ```
 
 ## [create Slice](./createSlice.ts)
@@ -41,13 +42,13 @@ const store = createStore({
 Create a slice from settings (configuration options).
 There are two types of settings:
 
-- SliceSettings
-- ReducerSettings
+-   SliceSettings
+-   ReducerSettings
 
 Matched with two types of slice:
 
-- SliceObject
-- ReducerObject
+-   SliceObject
+-   ReducerObject
 
 Input: `SliceSettings | ReducerSettings`
 
@@ -59,46 +60,50 @@ Usage
 import createSlice from 'utils/state/createSlice';
 
 const slice = createSlice({
-  name: 'topWalletReports',
-  initialState: {},
-  // case reducers: (state) => newState or (state, actionPayload) => newState
-  reducers: {
-    list: (state: TopWalletReportsState, _payload: TopWalletListRequestData) => ({
-      ...state,
-      loading: true,
-    }),
-    listSuccess: (
-      state: TopWalletReportsState,
-      {
-        page: { page, pageSize },
-        topWalletList,
-        totalResults,
-      }: TopWalletListResponseData,
-    ) => ({
-      ...state,
-      loading: false,
-      list: topWalletList,
-      total: totalResults,
-      page,
-      pageSize,
-    }),
-  },
-  // saga workers
-  workers: {
-    // listSuccess, requestFailed are actions injected from case reducers
-    list: ({ listSuccess, requestFailed }) =>
-      function* handleList({ payload }) {
-        const res = (yield call(service.list, payload)) as BaseResponse<
-          TopWalletListResponseData
-        >;
+    name: 'topWalletReports',
+    initialState: {},
+    // case reducers: (state) => newState or (state, actionPayload) => newState
+    reducers: {
+        list: (
+            state: TopWalletReportsState,
+            _payload: TopWalletListRequestData,
+        ) => ({
+            ...state,
+            loading: true,
+        }),
+        listSuccess: (
+            state: TopWalletReportsState,
+            {
+                page: { page, pageSize },
+                topWalletList,
+                totalResults,
+            }: TopWalletListResponseData,
+        ) => ({
+            ...state,
+            loading: false,
+            list: topWalletList,
+            total: totalResults,
+            page,
+            pageSize,
+        }),
+    },
+    // saga workers
+    workers: {
+        // listSuccess, requestFailed are actions injected from case reducers
+        list: ({ listSuccess, requestFailed }) =>
+            function* handleList({ payload }) {
+                const res = (yield call(
+                    service.list,
+                    payload,
+                )) as BaseResponse<TopWalletListResponseData>;
 
-        if (isSuccessResponse(res)) {
-          yield put(listSuccess(res.data));
-        } else {
-          yield put(requestFailed(res.message));
-        }
-      },
-  }
+                if (isSuccessResponse(res)) {
+                    yield put(listSuccess(res.data));
+                } else {
+                    yield put(requestFailed(res.message));
+                }
+            },
+    },
 });
 ```
 
@@ -116,17 +121,17 @@ Usage
 import createSliceObject from 'utils/createSliceObject';
 
 const sliceObject = createSliceObject({
-  name: 'slice name',
-  initialState: {},
+    name: 'slice name',
+    initialState: {},
 
-  // case reducers: (state) => newState or (state, actionPayload) => newState
-  reducers: {},
+    // case reducers: (state) => newState or (state, actionPayload) => newState
+    reducers: {},
 
-  // saga workers
-  workers: {},
+    // saga workers
+    workers: {},
 
-  // extra reducers to apply for an action type
-  extraReducer: {}
+    // extra reducers to apply for an action type
+    extraReducer: {},
 });
 ```
 
@@ -145,8 +150,8 @@ Usage
 import createReducerObject from 'utils/createReducerObject';
 
 const sliceObject = createReducerObject({
-  name: 'slice name',
-  initialState: {},
-  reducer: sliceReducer,
+    name: 'slice name',
+    initialState: {},
+    reducer: sliceReducer,
 });
 ```
