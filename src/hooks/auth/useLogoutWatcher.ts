@@ -12,7 +12,7 @@ const useLogoutWatcher = () => {
 
   useEffect(() => {
     if (!authData) {
-      apolloClient.resetStore().then(() => {
+      apolloClient.clearStore().then(() => {
         let redirectTo = encodeURIComponent(
           window.location.pathname + window.location.search,
         );

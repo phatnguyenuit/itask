@@ -3,6 +3,7 @@ import { Box, Button, Grid } from '@mui/material';
 import AppContent from 'components/app/app-content';
 import storageService from 'services/storage';
 import { useSearchTodosLazyQuery } from 'shared';
+
 import Todo from './components/todo';
 import useStyles from './styles';
 
