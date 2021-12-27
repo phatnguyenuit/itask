@@ -21,6 +21,9 @@ const TodosPage: React.FC = () => {
     fetchTodos({
       variables: {
         userId,
+        searchParams: {
+          pageSize: 20,
+        },
       },
     });
   };

@@ -73,6 +73,8 @@ export type QuerySearchTodosArgs = {
 export type SearchTodoParams = {
   id?: InputMaybe<Scalars['Int']>;
   isCompleted?: InputMaybe<Scalars['Boolean']>;
+  page?: InputMaybe<Scalars['Int']>;
+  pageSize?: InputMaybe<Scalars['Int']>;
   title?: InputMaybe<Scalars['String']>;
 };
 

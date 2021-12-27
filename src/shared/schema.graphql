@@ -20,6 +20,8 @@ type Query {
 input SearchTodoParams {
   id: Int
   isCompleted: Boolean
+  page: Int
+  pageSize: Int
   title: String
 }
 
