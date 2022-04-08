@@ -1,3 +1,5 @@
+## [1.4.2](https://github.com/phatnguyenuit/itask/compare/1.4.1...1.4.2) (2022-04-08)
+
 ## [1.4.1](https://github.com/phatnguyenuit/itask/compare/1.4.0...1.4.1) (2022-04-08)
 
 # [1.4.0](https://github.com/phatnguyenuit/itask/compare/1.3.0...1.4.0) (2021-10-20)
