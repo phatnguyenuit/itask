@@ -1,3 +1,10 @@
+## [1.4.4](https://github.com/phatnguyenuit/itask/compare/1.4.3...1.4.4) (2022-04-08)
+
+
+### Bug Fixes
+
+* fix prettier eol ([0a9bfd4](https://github.com/phatnguyenuit/itask/commit/0a9bfd4de9ad08ac8d83e494567104a0fb9f332c))
+
 ## [1.4.3](https://github.com/phatnguyenuit/itask/compare/1.4.2...1.4.3) (2022-04-08)
 
 ## [1.4.2](https://github.com/phatnguyenuit/itask/compare/1.4.1...1.4.2) (2022-04-08)
