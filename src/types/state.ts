@@ -1,5 +1,6 @@
-import { Reducer, Action } from 'redux';
-import { StoreServiceState } from 'types/common';
+import { Action, Reducer } from 'redux';
+
+import { StoreServiceState } from './common';
 
 export interface ReducerSettings<TName extends string, TState> {
   initialState: TState;

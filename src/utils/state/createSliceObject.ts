@@ -1,12 +1,13 @@
 import { Action, Reducer } from 'redux';
-import { takeLatest, all, fork } from 'redux-saga/effects';
+import { all, fork, takeLatest } from 'redux-saga/effects';
+
 import {
+  Actions,
+  PayloadAction,
+  PayloadActionCreator,
+  SliceObject,
   SliceReducersBase,
   SliceSettings,
-  SliceObject,
-  PayloadActionCreator,
-  PayloadAction,
-  Actions,
 } from 'types/state';
 
 const createActionType = (name: string, key: string) => `${name}/${key}`;

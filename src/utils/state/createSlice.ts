@@ -1,12 +1,13 @@
 import {
+  ReducerObject,
+  ReducerSettings,
+  SliceObject,
   SliceReducersBase,
   SliceSettings,
-  SliceObject,
-  ReducerSettings,
-  ReducerObject,
 } from 'types/state';
-import createSliceObject from './createSliceObject';
+
 import createReducerObject from './createReducerObject';
+import createSliceObject from './createSliceObject';
 
 const isSliceSettings = (
   settings: SliceSettings<any, any, any> | ReducerSettings<any, any>,

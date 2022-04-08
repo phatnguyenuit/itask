@@ -1,11 +1,12 @@
 import { cleanup, screen, waitFor } from '@testing-library/react';
 import axios from 'axios';
-import { createTodos } from 'fixtures/todo';
 
+import { createTodos } from 'fixtures/todo';
 import { USERS } from 'fixtures/user';
 import { renderWithRedux } from 'testUtils';
 
 import WithTheme from '../with-theme';
+
 import TodosContainer from './index';
 
 describe('TodosContainer', () => {

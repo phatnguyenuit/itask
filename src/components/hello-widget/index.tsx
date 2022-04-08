@@ -1,5 +1,6 @@
 import { Typography } from '@mui/material';
 import { useSelector } from 'react-redux';
+
 import { selectHelloMessage } from 'selectors/hello';
 
 import useStyles from './styles';

@@ -1,12 +1,11 @@
 import { useCallback, useState } from 'react';
 
-import { User } from 'types/user';
-
 import AppBar from 'components/app-bar';
-import HelloWidget from 'components/hello-widget';
 import HelloInput from 'components/hello-input';
-import UsersContainer from 'components/users-container';
+import HelloWidget from 'components/hello-widget';
 import TodosContainer from 'components/todos-container';
+import UsersContainer from 'components/users-container';
+import { User } from 'types/user';
 
 import './App.css';
 

@@ -6,6 +6,7 @@ import { renderWithRedux } from 'testUtils';
 import { User } from 'types/user';
 
 import WithTheme from '../with-theme';
+
 import UsersContainer from './index';
 
 describe('UsersContainer', () => {

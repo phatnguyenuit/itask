@@ -1,8 +1,9 @@
 import { useCallback } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { Button } from '@mui/material';
 
-import { selectUsers, selectErrorMessage } from 'selectors/users';
+import { Button } from '@mui/material';
+import { useDispatch, useSelector } from 'react-redux';
+
+import { selectErrorMessage, selectUsers } from 'selectors/users';
 import { fetchUsers } from 'states/users';
 import { User } from 'types/user';
 

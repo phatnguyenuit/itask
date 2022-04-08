@@ -1,6 +1,7 @@
 import clsx from 'clsx';
 
 import { User } from 'types/user';
+
 import useStyles from './styles';
 
 export interface UserWidgetProps {

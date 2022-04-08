@@ -1,10 +1,10 @@
+import { Menu as MenuIcon } from '@mui/icons-material';
 import {
-  AppBar as MuiAppBar,
   IconButton,
+  AppBar as MuiAppBar,
   Toolbar,
   Typography,
 } from '@mui/material';
-import { Menu as MenuIcon } from '@mui/icons-material';
 
 const AppBar: React.FC = () => (
   <MuiAppBar position="fixed">

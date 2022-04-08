@@ -1,16 +1,17 @@
 import {
+  AnyAction,
+  PreloadedState,
+  Reducer,
   applyMiddleware,
   combineReducers,
   compose,
   createStore as reduxCreateStore,
-  Reducer,
-  AnyAction,
-  PreloadedState,
 } from 'redux';
+import { composeWithDevTools } from 'redux-devtools-extension';
 import createSagaMiddleware from 'redux-saga';
 import { all, fork } from 'redux-saga/effects';
-import { composeWithDevTools } from 'redux-devtools-extension';
-import { SliceObject, ReducerObject } from 'types/state';
+
+import { ReducerObject, SliceObject } from 'types/state';
 
 const isSliceObject = (
   o: SliceObject<string, any, any> | ReducerObject<string, any>,
