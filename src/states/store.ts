@@ -1,8 +1,10 @@
 import { PreloadedState } from 'redux';
+
 import createStore from 'utils/state/createStore';
+
 import helloSlice, { buildHelloState } from './hello';
-import usersSlice, { buildUsersState } from './users';
 import todosSlice, { buildTodosState } from './todos';
+import usersSlice, { buildUsersState } from './users';
 
 export const slices = {
   hello: helloSlice,

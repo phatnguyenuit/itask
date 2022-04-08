@@ -1,10 +1,10 @@
-import { waitFor, screen } from '@testing-library/react';
+import { screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 import App from './App';
 import WithTheme from './components/with-theme';
-import { USERS } from './fixtures/user';
 import { createTodos } from './fixtures/todo';
+import { USERS } from './fixtures/user';
 import { renderWithRedux } from './testUtils';
 
 describe('App', () => {

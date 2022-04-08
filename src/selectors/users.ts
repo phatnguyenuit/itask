@@ -1,4 +1,5 @@
 import { createSelector } from 'reselect';
+
 import { RootState } from '../states/store';
 
 const selectUsersState = (rootState: RootState) => rootState.users;

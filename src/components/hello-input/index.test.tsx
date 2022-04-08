@@ -1,8 +1,9 @@
 import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { selectHelloMessage } from 'selectors/hello';
 
+import { selectHelloMessage } from 'selectors/hello';
 import { renderWithRedux } from 'testUtils';
+
 import HelloInput from './index';
 
 describe('HelloInput', () => {

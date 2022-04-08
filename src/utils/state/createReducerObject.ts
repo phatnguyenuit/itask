@@ -1,4 +1,4 @@
-import { ReducerSettings, ReducerObject } from 'types/state';
+import { ReducerObject, ReducerSettings } from 'types/state';
 
 const createReducerObject = <TName extends string, TState>({
   name,

@@ -1,7 +1,9 @@
 import { render, screen } from '@testing-library/react';
+
 import { User } from 'types/user';
 
 import WithTheme from '../with-theme';
+
 import UserWidget from './index';
 
 describe('UserWidget', () => {

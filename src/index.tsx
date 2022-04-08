@@ -1,7 +1,8 @@
 import React from 'react';
+
+import { CssBaseline } from '@mui/material';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import { CssBaseline } from '@mui/material';
 
 import WithTheme from 'components/with-theme';
 import store from 'states/store';

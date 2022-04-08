@@ -1,15 +1,17 @@
-import { render } from '@testing-library/react';
 import { ReactNode } from 'react';
+
+import { render } from '@testing-library/react';
 import { Provider } from 'react-redux';
 import createMockStoreConfiguration from 'redux-mock-store';
 import createSagaMiddleware from 'redux-saga';
 
 import { createRootSaga } from 'utils/state/createStore';
+
 import {
+  RootState,
   buildRootState,
   configureStore,
   slices,
-  RootState,
 } from './states/store';
 
 export const renderWithMockRedux = (
