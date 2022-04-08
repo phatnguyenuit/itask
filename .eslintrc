@@ -10,11 +10,17 @@
   ],
   "rules": {
     "react/jsx-filename-extension": ["warn", { "extensions": [".tsx"] }],
+    "prettier/prettier": [
+      "error",
+      {
+        "endOfLine": "auto"
+      }
+    ],
     "sort-imports": [
       "error",
       {
         "ignoreCase": false,
-        "ignoreDeclarationSort": true, // don't want to sort import lines, use eslint-plugin-import instead
+        "ignoreDeclarationSort": true, // don"t want to sort import lines, use eslint-plugin-import instead
         "ignoreMemberSort": false,
         "memberSyntaxSortOrder": ["none", "all", "multiple", "single"],
         "allowSeparatedGroups": true
@@ -44,7 +50,7 @@
         ],
         "pathGroupsExcludedImportTypes": ["react"],
         "alphabetize": {
-          "order": "asc" /* sort in ascending order. Options: ['ignore', 'asc', 'desc'] */,
+          "order": "asc" /* sort in ascending order. Options: ["ignore", "asc", "desc"] */,
           "caseInsensitive": true /* ignore case. Options: [true, false] */
         }
       }
