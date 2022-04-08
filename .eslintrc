@@ -1,14 +1,62 @@
 {
-  "plugins": [
-    "prettier"
-  ],
+  "plugins": ["import", "prettier"],
   "extends": [
-    "react-app", 
-    "react-app/jest", 
+    "react-app",
+    "react-app/jest",
     "prettier/@typescript-eslint",
+    "plugin:import/recommended",
+    "plugin:import/typescript",
     "plugin:prettier/recommended"
   ],
   "rules": {
-    "react/jsx-filename-extension": ["warn", { "extensions": [".tsx"] }]
+    "react/jsx-filename-extension": ["warn", { "extensions": [".tsx"] }],
+    "sort-imports": [
+      "error",
+      {
+        "ignoreCase": false,
+        "ignoreDeclarationSort": true,
+        "ignoreMemberSort": false,
+        "memberSyntaxSortOrder": ["none", "all", "multiple", "single"],
+        "allowSeparatedGroups": true
+      }
+    ],
+    // turn on errors for missing imports
+    "import/no-unresolved": "error",
+    "import/no-named-as-default-member": "off",
+    "import/order": [
+      "error",
+      {
+        "groups": [
+          "builtin", // Built-in imports go first
+          "external", // <- External imports
+          "internal", // <- Absolute imports
+          ["sibling", "parent"], // <- Relative imports, the sibling and parent types they can be mingled together
+          "index", // <- index imports
+          "unknown" // <- unknown
+        ],
+        "newlines-between": "always",
+        "pathGroups": [
+          {
+            "pattern": "react",
+            "group": "builtin",
+            "position": "before"
+          }
+        ],
+        "pathGroupsExcludedImportTypes": ["react"],
+        "alphabetize": {
+          "order": "asc" /* sort in ascending order. Options: ['ignore', 'asc', 'desc'] */,
+          "caseInsensitive": true /* ignore case. Options: [true, false] */
+        }
+      }
+    ]
+  },
+  "settings": {
+    "import/resolver": {
+      "typescript": {
+        // Choose from one of the "project" configs below or omit to use <root>/tsconfig.json by default
+        // use <root>/path/to/folder/tsconfig.json
+        "project": "./tsconfig.json"
+      }
+    }
   }
 }
